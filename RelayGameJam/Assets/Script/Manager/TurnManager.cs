@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using VInspector;
 
 public class TurnManager : MonoBehaviour
 {
     
     [SerializeField] private Button turnEndBtn; // 턴 종료 버튼
-    [SerializeField] private List<PlayerController> playerTeams; //현재 플레이어 팀들을 저장
-    [SerializeField] private List<EnemyController> enemyTeams; //현재 적 팀의 캐릭터들을 저장
+   
     [SerializeField] private Transform playerSpawnTrans, enemySpawnTrans; //플레이어 팀과 적 팀의 소환 위치
     [SerializeField] private float spawnRange = 6f; //플레이어 , 적 팀 소환 반경
+    
+    [Foldout("Debug")]
+    [SerializeField] private List<PlayerController> playerTeams; //현재 플레이어 팀들을 저장
+    [SerializeField] private List<EnemyController> enemyTeams; //현재 적 팀의 캐릭터들을 저장
+    
+    [Foldout("Test")]
     [SerializeField] private List<PlayerController> playerTest;
     [SerializeField] private List<EnemyController> enemyTest;
 
@@ -64,6 +70,12 @@ public class TurnManager : MonoBehaviour
         //플레이어 팀의 모든 캐릭터를 IdleState상태로
         ChangeUnitState(playerTeams, State.Idle);
         //적 팀의 캐릭터들이 차례대로 공격을 시전
-       
+        ChangeUnitState(enemyTeams, State.Attack);
+    }
+
+    private void EnemyTurnEnd()
+    {
+        ChangeUnitState(enemyTeams, State.Idle);
+        ChangeUnitState(playerTeams, State.Attack);
     }
 }
