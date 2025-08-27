@@ -7,15 +7,14 @@ using VInspector;
 [Serializable]
 public class GameData
 {
+    public int playerCharacterId = 0;
 
-    
 }
 public class DataManager : SingletonDontDestroyOnLoad<DataManager>
 {
     string path;
     public GameData Data;
     private string fileName = "GameData.json";
-    public bool isOpening = true;
 
 
     protected override void Awake()

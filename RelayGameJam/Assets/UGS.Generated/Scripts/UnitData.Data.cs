@@ -59,6 +59,7 @@ namespace UnitData
 		public System.Int32 ID;
 		public System.String Name;
 		public System.String Information;
+		public System.String ImageName;
 		public System.String FirstCards;
 		public System.Int32 Hp;
 		public System.Int32 Mana;

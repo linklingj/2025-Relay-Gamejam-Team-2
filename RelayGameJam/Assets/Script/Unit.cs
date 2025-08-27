@@ -5,21 +5,18 @@ public class Unit : MonoBehaviour
 {
     private Animator animator;
     private Stat hp,mana;
+    private UnitData.Data data;
     
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
-
-    private void Start()
+    
+    public void Init(UnitData.Data data)
     {
-        hp = Stat.Create(10);
-        mana = Stat.Create(3);
-    }
-
-    public void Init()
-    {
-        
+        this.data = data;
+        hp = Stat.Create(data.Hp);
+        mana = Stat.Create(data.Mana);
     }
 
     public void OnDamage(float value)
