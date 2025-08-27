@@ -20,8 +20,7 @@ public class EnemyController : CharacterController<EnemyController>
     protected override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.F1))ChangeState(State.Idle);
-        if(Input.GetKeyDown(KeyCode.F2))ChangeState(State.Attack);
+
     }
     
 }

@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VInspector;
 
-public class TurnManager : MonoBehaviour
+public class TurnManager : Singleton<TurnManager>
 {
     
     [SerializeField] private Button turnEndBtn; // 턴 종료 버튼
@@ -14,10 +14,12 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private float spawnRange = 6f; //플레이어 , 적 팀 소환 반경
     
     [Foldout("Debug")]
-    [SerializeField] private List<PlayerController> playerTeams; //현재 플레이어 팀들을 저장
-    [SerializeField] private List<EnemyController> enemyTeams; //현재 적 팀의 캐릭터들을 저장
+    public List<Unit> playerTeams; //현재 플레이어 팀들을 저장
+    [SerializeField] private List<Unit> enemyTeams; //현재 적 팀의 캐릭터들을 저장
     
     [SerializeField] private Unit playerUnit,enemyUnit;
+
+    private int enemyAttackCount = 0;
 
     private void Start()
     {
@@ -27,6 +29,7 @@ public class TurnManager : MonoBehaviour
         SpawnUnits(UnitData.Data.DataList[1],false);
     }
 
+    #region Spawn
     private void SpawnUnits(UnitData.Data unitData, bool isPlayer)
     {
         List<UnitData.Data> unitDatas = new List<UnitData.Data>(){unitData};
@@ -52,21 +55,28 @@ public class TurnManager : MonoBehaviour
             //각각에 맞는 팀에 추가
             if (isPlayerTeam)
             {
-                if(unit.TryGetComponent(out PlayerController _player))
-                    playerTeams.Add(_player);
+                playerTeams.Add(unit);
             }
             else
             {
-                if(unit.TryGetComponent(out EnemyController _enemy))
-                    enemyTeams.Add(_enemy);
+                enemyTeams.Add(unit);
             }
         }
     }
+    #endregion
 
-    //팀의 모든 캐릭터들의 State를 변경
-    private void ChangeUnitState<T>(List<T> units, State state) where T : IChangeState
+    public void CheckEnemy(Transform transform) //현재 적이 존재하는 지 확인하는 코드입니다.
     {
-        foreach (var unit in units)unit.ChangeState(state);
+        enemyTeams.Remove(transform.GetComponent<Unit>()); //적 팀에서 죽은 적을 뺍니다.
+        if(enemyTeams.Count <= 0)Debug.Log("라운드 종료"); //적의 개수가 0이라면 라운드를 종료합니다.
+    }
+    
+    
+    #region Turn and State
+    //팀의 모든 캐릭터들의 State를 변경
+    private void ChangeUnitState (List<Unit> units, State state)
+    {
+        foreach (var unit in units)unit.GetIChangeState().ChangeState(state);
     }
 
     private void PlayerTurnEnd()
@@ -77,9 +87,16 @@ public class TurnManager : MonoBehaviour
         ChangeUnitState(enemyTeams, State.Attack);
     }
 
-    private void EnemyTurnEnd()
+    public void EnemyTurnEnd()
     {
-        ChangeUnitState(enemyTeams, State.Idle);
-        ChangeUnitState(playerTeams, State.Attack);
+        enemyAttackCount += 1;
+        if (enemyAttackCount >= enemyTeams.Count)
+        {
+            ChangeUnitState(enemyTeams, State.Idle);
+            ChangeUnitState(playerTeams, State.Attack);
+            enemyAttackCount = 0;
+        }
     }
+    
+    #endregion
 }

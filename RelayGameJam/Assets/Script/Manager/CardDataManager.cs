@@ -39,5 +39,10 @@ namespace CardData
            
         }
         
+        public SkillBase GetRandomSkill() //랜덤 스킬 반환
+        {
+            return Skills[UnityEngine.Random.Range(0, Skills.Count)];
+        }
+        
     }
 }

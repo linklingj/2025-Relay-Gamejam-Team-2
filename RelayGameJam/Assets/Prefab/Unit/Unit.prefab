@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4339e1230d7d0419176a05bbfb2b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpBarPrefab: {fileID: -7136106271793998369, guid: 72307337b9dcd34468c6489318e345de, type: 3}
 --- !u!212 &2295546355442982016
 SpriteRenderer:
   m_ObjectHideFlags: 0

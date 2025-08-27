@@ -7,6 +7,6 @@ public class UtilitySkill : SkillBase
 
     public override void SkillAction(Unit unit)
     {
-        //Skilluse
+        DetailAction(unit);
     }
 }

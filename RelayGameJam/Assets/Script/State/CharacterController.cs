@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum State
 {
-    Idle,Attack,Counter
+    Idle,Attack
 }
 
 public interface IChangeState

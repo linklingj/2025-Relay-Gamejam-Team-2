@@ -1,12 +1,17 @@
+using CardData;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour,IState<EnemyController>
+public class EnemyAttack : IState<EnemyController>
 {
-    private IState<EnemyController> _enemyController;
+    private EnemyController _enemyController;
 
     public void OperateEnter(EnemyController sender)
     {
-        
+        _enemyController = sender;
+        var skill = CardDataManager.Inst.GetRandomSkill();
+        skill.SkillAction(TurnManager.Inst.playerTeams[0]);//임시 적용
+        _enemyController.ChangeState(State.Idle);
+        TurnManager.Inst.EnemyTurnEnd();
     }
 
     public void OperateUpdate(EnemyController sender)

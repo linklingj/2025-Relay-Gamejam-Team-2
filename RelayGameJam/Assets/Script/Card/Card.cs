@@ -12,7 +12,7 @@ namespace CardData
     {
         public PRS originPrs;
         private RectTransform rect;
-        [SerializeField] private TextMeshProUGUI nameTxt, inforTxt; //카드이름, 카드정보
+        [SerializeField] private TextMeshProUGUI nameTxt, inforTxt,costTxt; //카드이름, 카드정보
         [SerializeField] private Image cardImage; //카드 이미지
         public SkillBase skill; //SkillData
         private PlayerCardController playerCardController; 
@@ -43,6 +43,7 @@ namespace CardData
                 playerCardController.SetCardSelected(true,this); //playerController에 카드가 선택됐다고 전달
                 switch (skill.data.IsTargeting)
                 {
+            
                     case 1:
                         ArcController.Inst.Targeting(rect); //타겟팅이 필요한 skill이라면 타겟팅 실행
                         break;
@@ -52,6 +53,7 @@ namespace CardData
         }
         
 
+        //지정한 위치로 이동
         public void MoveToPrs(PRS prs, bool useDotween = false,float duration = 0.2f)
         {
             if (useDotween)
@@ -66,14 +68,15 @@ namespace CardData
                 rect.localScale = prs.scale;
                 rect.rotation = prs.rot;
             }
-            transform.SetSiblingIndex(originPrs.siblingIndex);//카드를 원래 위치로 (sorting Layer같은 느낌)
-        } //지정한 위치로 이동
+            transform.SetSiblingIndex(originPrs.siblingIndex);//카드를 레이어를 원래 위치로 (sorting Layer같은 느낌)
+        } 
 
         public void Init(SkillBase skill) //Skill Data 입력
         {
             this.skill = skill;
             nameTxt.text = skill.data.CardName;
             inforTxt.text = skill.data.CardInfor;
+            costTxt.text = skill.data.cost.ToString();
             cardImage.sprite = Resources.Load<Sprite>(_path + skill.data.ImageName);//이미지 받아오기
         }
 

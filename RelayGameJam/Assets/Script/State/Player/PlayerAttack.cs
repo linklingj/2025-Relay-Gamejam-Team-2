@@ -13,10 +13,6 @@ public class PlayerAttack : IState<PlayerController>
 
     public void OperateUpdate(PlayerController sender)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _playerController.ChangeState(State.Idle);
-        }
     }
 
     public void OperateExit(PlayerController sender)

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CardData;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VInspector;
@@ -26,15 +28,19 @@ public class PlayerCardController : Singleton<PlayerCardController>
 {
     [SerializeField] private List<SkillBase> allSkills = new List<SkillBase>(); //플레이어가 보유한 전체 카드
     private Queue<SkillBase> remainSkills = new Queue<SkillBase>(); //남아 있는 카드
-    [SerializeField] private List<Card> handCards = new List<Card>(); //현재 손에 들고 있는 카드
+    private List<Card> handCards = new List<Card>(); //현재 손에 들고 있는 카드
     
     [SerializeField] private RectTransform left, right; //카드 hand의 끄트머리 위치 및 회전값
-    [SerializeField] private Transform cardSpawnParent; //카드를 소환할 부모
+    [SerializeField] private RectTransform cardSpawnParent; //카드를 소환할 부모
     [SerializeField] private Transform cardSpawnPos; //카드를 소환할 위치
     [SerializeField] private Card cardPrefab;
-    private Card selectedCard;
+    private Card selectedCard; //현재 선택한 카드
     private int maxHandCardCount = 7; //한 손에 들 수 있는 최대 카드의 양
-    private bool isCardSelected = false;
+    private bool isCardSelected = false; //카드가 선택 되었는가
+    private bool isShow = false; //카드를 보여주는가
+
+    [SerializeField] private TextMeshProUGUI costTxt;
+    private int curMana = 3;
 
     private void Start()
     {
@@ -52,24 +58,48 @@ public class PlayerCardController : Singleton<PlayerCardController>
     {
        UnSelect();
        Targeting();
+       ShowCardsPos();
     }
 
-    private void Targeting()
+    private void ShowCardsPos()
+    {
+        float checkY = -2.5f;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePos.y < checkY && !isShow)
+        {
+            cardSpawnParent.DOAnchorPos(new Vector2(0,0),0.25f);
+            isShow = true;
+        }
+        else if(isShow && mousePos.y >= checkY)
+        {
+            cardSpawnParent.DOAnchorPos(new Vector2(0,-200),0.25f);
+            isShow = false;
+        }
+    }
+
+    private void Targeting() //카트를 선택했을 때 카드가 타겟팅 스킬이라면 Arc로 타겟팅
     {
         if (isCardSelected && Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             
+            //Unit오브젝트를 선택했다면 해당 Unit에세 스킬 사용
             if (hit.collider != null && hit.transform.TryGetComponent<Unit>( out Unit u) )
             {
-                selectedCard.skill.SkillAction(u);
-                handCards.Remove(selectedCard);
-                isCardSelected = false;
-                ArcController.Inst.UnTargeting();
-                Destroy(selectedCard.gameObject);
-                CardAlignment();
-                Debug.Log("공격성공");
+                if (selectedCard.skill.data.cost > curMana)
+                {
+                    UnSelect();
+                    return;
+                }
+                curMana -= selectedCard.skill.data.cost;
+                selectedCard.skill.SkillAction(u); //스킬 사용
+                handCards.Remove(selectedCard); //손에 있는 카드 없애기
+                isCardSelected = false; //선택 취소
+                ArcController.Inst.UnTargeting(); //Arc타겟팅 취소
+                Destroy(selectedCard.gameObject); //오브젝트 삭제
+                CardAlignment(); //남은 카드 정렬
+                
             }
         }
     }
@@ -82,7 +112,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
             ArcController.Inst.UnTargeting();
             foreach (var card in handCards)
             {
-                card.MoveToPrs(card.originPrs,true);
+                card.MoveToPrs(card.originPrs,true); //모든 카드를 원래 자리로
             }
         }
     }
@@ -114,7 +144,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
     //남아있는 카드에 카드 채우기
     private void FillSkills()
     {
-        allSkills = new List<SkillBase>(CardDataManager.Inst.Skills);
+        allSkills = new List<SkillBase>(CardDataManager.Inst.Skills); //todo 임시로 모든 스킬을 가져옴
         allSkills.Shuffle(); //카드 셔플
         remainSkills = new Queue<SkillBase>(allSkills);
     }

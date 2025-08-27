@@ -65,7 +65,10 @@ namespace CardData
 		public System.Int32 IsTargeting;
 		public CardAttribute CardAttribute;
 		public CardAttackType CardAttackType;
+		public System.Int32 cost;
 		public System.Int32 Value;
+		public System.String SkillDetail;
+		public System.Int32 DetailValue;
   
 
 #region fuctions
