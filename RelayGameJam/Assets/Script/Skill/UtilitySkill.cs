@@ -5,8 +5,8 @@ public class UtilitySkill : SkillBase
 {
     public UtilitySkill(Data data) : base(data) { }
 
-    public override void SkillAction(Unit unit)
+    public override void SkillAction(Unit targetUnit,Unit ownerUnit)
     {
-        DetailAction(unit);
+        DetailAction(targetUnit,ownerUnit);
     }
 }

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Heal : SkillDetails
 {
-    public override void DetailAction(Unit targetUnit)
+    public override void DetailAction(Unit targetUnit,Unit ownerUnit)
     {
-        targetUnit.OnDamage(-value);
+        if(ownerUnit == null)Debug.LogError("Unit is null");
+        ownerUnit.OnDamage(-value);
     }
 }

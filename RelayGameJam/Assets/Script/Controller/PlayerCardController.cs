@@ -39,12 +39,13 @@ public class PlayerCardController : Singleton<PlayerCardController>
     private bool isCardSelected = false; //카드가 선택 되었는가
     private bool isShow = false; //카드를 보여주는가
 
-    [SerializeField] private TextMeshProUGUI costTxt;
-    private int curMana = 3;
+    [FormerlySerializedAs("costTxt")] [SerializeField] private TextMeshProUGUI manaTxt;
+    private int curMana = 3,maxMana = 3;
 
     private void Start()
     {
         FillSkills();
+        UpdateMana();
     }
 
     //카드를 가져옴
@@ -54,6 +55,23 @@ public class PlayerCardController : Singleton<PlayerCardController>
         StartCoroutine(IESpawnCards(value));
     }
 
+    public void AddMana(int value)
+    {
+        curMana += value;   
+        UpdateMana();
+    }
+    
+    public void ResetMana()
+    {
+        curMana = maxMana;
+        UpdateMana();
+    }
+
+    private void UpdateMana()
+    {
+        manaTxt.text = curMana.ToString() + "/" + maxMana.ToString();
+    }
+
     private void Update()
     {
        UnSelect();
@@ -61,7 +79,8 @@ public class PlayerCardController : Singleton<PlayerCardController>
        ShowCardsPos();
     }
 
-    private void ShowCardsPos()
+    //마우스가 위에 있을 때는 카드 전체가 내려가고 마우스가 아래에 있을 때는 카드 전체가 올라가는 코드
+    private void ShowCardsPos() 
     {
         float checkY = -2.5f;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -77,6 +96,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
         }
     }
 
+    #region Targeting and Using
     private void Targeting() //카트를 선택했을 때 카드가 타겟팅 스킬이라면 Arc로 타겟팅
     {
         if (isCardSelected && Input.GetMouseButtonDown(0))
@@ -93,7 +113,8 @@ public class PlayerCardController : Singleton<PlayerCardController>
                     return;
                 }
                 curMana -= selectedCard.skill.data.cost;
-                selectedCard.skill.SkillAction(u); //스킬 사용
+                UpdateMana();
+                selectedCard.skill.SkillAction(u,TurnManager.Inst.player); //스킬 사용
                 handCards.Remove(selectedCard); //손에 있는 카드 없애기
                 isCardSelected = false; //선택 취소
                 ArcController.Inst.UnTargeting(); //Arc타겟팅 취소
@@ -116,7 +137,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
             }
         }
     }
-
+    #endregion
     public void SetCardSelected(bool selected, Card selectedCard = null)
     {
         isCardSelected = selected;
@@ -149,6 +170,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
         remainSkills = new Queue<SkillBase>(allSkills);
     }
 
+    #region Card Alignment
     //카드 정렬
     private void CardAlignment()
     {
@@ -197,6 +219,6 @@ public class PlayerCardController : Singleton<PlayerCardController>
         }
         return result;
     }
-    
+    #endregion
     
 }

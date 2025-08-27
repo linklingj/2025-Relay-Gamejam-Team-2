@@ -5,8 +5,9 @@ using UnityEngine.TextCore.Text;
 
 public class EnemyController : CharacterController<EnemyController>
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         IState<EnemyController> Idle = new EnemyIdle();
         IState<EnemyController> Attack = new EnemyAttack();
         

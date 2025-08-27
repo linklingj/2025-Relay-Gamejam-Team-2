@@ -20,11 +20,11 @@ namespace CardData
             skillDetail?.Init(data.DetailValue);
         }
 
-        public abstract void SkillAction(Unit unit);
+        public abstract void SkillAction(Unit targetUnit,Unit ownerUnit);
 
-        protected virtual void DetailAction(Unit unit) //세부스킬 시전
+        protected virtual void DetailAction(Unit targetUnit,Unit ownerUnit) //세부스킬 시전
         {
-            skillDetail?.DetailAction(unit);
+            skillDetail?.DetailAction( targetUnit,ownerUnit);
         }
     }
 }

@@ -190,14 +190,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293205657}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 929476401}
   - {fileID: 1685035015}
-  m_Father: {fileID: 1573064014}
+  m_Father: {fileID: 468124339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -1134,6 +1134,7 @@ RectTransform:
   - {fileID: 646249233}
   - {fileID: 827025289}
   - {fileID: 2029768147}
+  - {fileID: 293205658}
   m_Father: {fileID: 756073458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1864,12 +1865,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b958c7f0e0b314a93d16fb7c5a5958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   left: {fileID: 992790626}
   right: {fileID: 646249233}
   cardSpawnParent: {fileID: 2029768147}
   cardSpawnPos: {fileID: 827025289}
   cardPrefab: {fileID: 2798762455757636370, guid: edd3316e08b7ae542b90fdff0e6f1184, type: 3}
+  manaTxt: {fileID: 1685035016}
 --- !u!1 &769037143
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,7 +2728,7 @@ MonoBehaviour:
   playerSpawnTrans: {fileID: 1612682040}
   enemySpawnTrans: {fileID: 628317106}
   spawnRange: 5
-  playerTeams: []
+  player: {fileID: 0}
   enemyTeams: []
   playerUnit: {fileID: 8444905174270927435, guid: 341d6fd6d10e4044b8e61040ed365fa2, type: 3}
   enemyUnit: {fileID: 1504172237441061486, guid: 2998e5ee381ff1b4caad80c3969a02de, type: 3}
@@ -3110,7 +3111,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1286115504}
-  - {fileID: 293205658}
   m_Father: {fileID: 1339367293}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -14,7 +14,7 @@ public class TurnManager : Singleton<TurnManager>
     [SerializeField] private float spawnRange = 6f; //플레이어 , 적 팀 소환 반경
     
     [Foldout("Debug")]
-    public List<Unit> playerTeams; //현재 플레이어 팀들을 저장
+    public Unit player; //현재 플레이어 팀들을 저장
     [SerializeField] private List<Unit> enemyTeams; //현재 적 팀의 캐릭터들을 저장
     
     [SerializeField] private Unit playerUnit,enemyUnit;
@@ -24,9 +24,11 @@ public class TurnManager : Singleton<TurnManager>
     private void Start()
     {
         turnEndBtn.onClick.AddListener(()=>PlayerTurnEnd()); //스크립트에서 turnEndBtn의 클릭 이벤트를 추가
+        turnEndBtn.onClick.AddListener(() => PlayerCardController.Inst.ResetMana()); //마나 초기화 함수
         
         SpawnUnits(UnitData.Data.DataList[DataManager.Inst.Data.playerCharacterId],true);
         SpawnUnits(UnitData.Data.DataList[1],false);
+        ChangeUnitState(player,State.Attack);
     }
 
     #region Spawn
@@ -55,7 +57,7 @@ public class TurnManager : Singleton<TurnManager>
             //각각에 맞는 팀에 추가
             if (isPlayerTeam)
             {
-                playerTeams.Add(unit);
+                player = unit;
             }
             else
             {
@@ -78,11 +80,16 @@ public class TurnManager : Singleton<TurnManager>
     {
         foreach (var unit in units)unit.GetIChangeState().ChangeState(state);
     }
+    
+    private void ChangeUnitState (Unit unit, State state)
+    {
+        unit.GetIChangeState().ChangeState(state);
+    }
 
     private void PlayerTurnEnd()
     {
         //플레이어 팀의 모든 캐릭터를 IdleState상태로
-        ChangeUnitState(playerTeams, State.Idle);
+        ChangeUnitState(player, State.Idle);
         //적 팀의 캐릭터들이 차례대로 공격을 시전
         ChangeUnitState(enemyTeams, State.Attack);
     }
@@ -93,7 +100,7 @@ public class TurnManager : Singleton<TurnManager>
         if (enemyAttackCount >= enemyTeams.Count)
         {
             ChangeUnitState(enemyTeams, State.Idle);
-            ChangeUnitState(playerTeams, State.Attack);
+            ChangeUnitState(player, State.Attack);
             enemyAttackCount = 0;
         }
     }

@@ -8,5 +8,5 @@ public abstract class SkillDetails //세부 스킬 Heal이라는 스크립트가
     {
         this.value = value;
     }
-    public abstract void DetailAction(Unit targetUnit);
+    public abstract void DetailAction(Unit targetUnit,Unit ownerUnit);
 }

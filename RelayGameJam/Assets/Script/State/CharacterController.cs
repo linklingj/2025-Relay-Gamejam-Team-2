@@ -17,7 +17,15 @@ public class CharacterController<T> : MonoBehaviour,IChangeState where T : Chara
     protected Dictionary<State,IState<T>> m_states = new Dictionary<State, IState<T>>();
     protected StateMachine<T> m_stateMachine;
     protected State curState;
+    protected Unit unit;
+
+    protected virtual void Awake()
+    {
+        unit = GetComponent<Unit>();
+    }
     
+    public Unit GetUnit() => unit;
+
 
     protected virtual void Update()
     {

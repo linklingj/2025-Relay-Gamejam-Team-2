@@ -9,7 +9,7 @@ public class EnemyAttack : IState<EnemyController>
     {
         _enemyController = sender;
         var skill = CardDataManager.Inst.GetRandomSkill();
-        skill.SkillAction(TurnManager.Inst.playerTeams[0]);//임시 적용
+        skill.SkillAction(TurnManager.Inst.player,_enemyController.GetUnit());//임시 적용
         _enemyController.ChangeState(State.Idle);
         TurnManager.Inst.EnemyTurnEnd();
     }
