@@ -27,7 +27,6 @@ public class TurnManager : MonoBehaviour
         //todo 데이터로 바꿔야함
         SpawnUnits(playerTest,true);
         SpawnUnits(enemyTest,false);
-        ChangeUnitState(playerTeams,State.Attack);
     }
 
     //플레이어 캐릭터와 적 캐릭터들을 소환

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using CardData;
 using UnityEngine;
@@ -23,42 +24,99 @@ public class PRS //위치,회전,스케일 저장
 
 public class PlayerCardController : Singleton<PlayerCardController>
 {
-    [SerializeField] private List<Card> allCards = new List<Card>(); //플레이어가 보유한 전체 카드
-    private Queue<Card> remainCards = new Queue<Card>(); //남아 있는 카드
-    [SerializeField] private List<Card> trashCards = new List<Card>(); 
+    [SerializeField] private List<SkillBase> allSkills = new List<SkillBase>(); //플레이어가 보유한 전체 카드
+    private Queue<SkillBase> remainSkills = new Queue<SkillBase>(); //남아 있는 카드
     [SerializeField] private List<Card> handCards = new List<Card>(); //현재 손에 들고 있는 카드
+    
     [SerializeField] private RectTransform left, right; //카드 hand의 끄트머리 위치 및 회전값
     [SerializeField] private Transform cardSpawnParent; //카드를 소환할 부모
     [SerializeField] private Transform cardSpawnPos; //카드를 소환할 위치
+    [SerializeField] private Card cardPrefab;
+    private Card selectedCard;
     private int maxHandCardCount = 7; //한 손에 들 수 있는 최대 카드의 양
+    private bool isCardSelected = false;
 
     private void Start()
     {
-        FillCards(); //남아있는 카드에 카드 채우기
+        FillSkills();
     }
 
     //카드를 가져옴
     [Button]
     public void GetCards(int value = 3)
     {
-        for (int i = 0; i < value; i++)
+        StartCoroutine(IESpawnCards(value));
+    }
+
+    private void Update()
+    {
+       UnSelect();
+       Targeting();
+    }
+
+    private void Targeting()
+    {
+        if (isCardSelected && Input.GetMouseButtonDown(0))
         {
-            if (handCards.Count >= maxHandCardCount) return;
-            var card = remainCards.Dequeue();
-            var obj= Instantiate(card,cardSpawnPos.position,Quaternion.identity,cardSpawnParent);
-            handCards.Add(obj);
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            
+            if (hit.collider != null && hit.transform.TryGetComponent<Unit>( out Unit u) )
+            {
+                selectedCard.skill.SkillAction(u);
+                handCards.Remove(selectedCard);
+                isCardSelected = false;
+                ArcController.Inst.UnTargeting();
+                Destroy(selectedCard.gameObject);
+                CardAlignment();
+                Debug.Log("공격성공");
+            }
+        }
+    }
+
+    private void UnSelect() //카드 선택한 거 취소
+    {
+        if (isCardSelected && Input.GetMouseButtonDown(1))
+        {
+            isCardSelected = false;
+            ArcController.Inst.UnTargeting();
+            foreach (var card in handCards)
+            {
+                card.MoveToPrs(card.originPrs,true);
+            }
+        }
+    }
+
+    public void SetCardSelected(bool selected, Card selectedCard = null)
+    {
+        isCardSelected = selected;
+        if(selectedCard != null && selected) this.selectedCard = selectedCard;
+    }
+    public bool GetIsCardSelected() => isCardSelected;
+
+    IEnumerator IESpawnCards(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (handCards.Count >= maxHandCardCount) yield break;
+            var skill = remainSkills.Dequeue();
+            var spawnCard= Instantiate(cardPrefab,cardSpawnPos.position,Quaternion.identity,cardSpawnParent);
+            spawnCard.Inject(this);
+            spawnCard.Init(skill);
+            handCards.Add(spawnCard);
             
             CardAlignment(); //카드 정렬
-            if(remainCards.Count <=0)FillCards();
-                
+            if(remainSkills.Count <=0)FillSkills();
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
     //남아있는 카드에 카드 채우기
-    private void FillCards()
+    private void FillSkills()
     {
-        allCards.Shuffle(); //카드 셔플
-        remainCards = new Queue<Card>(allCards);
+        allSkills = new List<SkillBase>(CardDataManager.Inst.Skills);
+        allSkills.Shuffle(); //카드 셔플
+        remainSkills = new Queue<SkillBase>(allSkills);
     }
 
     //카드 정렬
@@ -69,7 +127,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
         for (int i = 0; i <handCards.Count; i++)
         {
             handCards[i].originPrs = newPRS[i];
-            handCards[i].MoveToPrs(newPRS[i],true,0.5f); //새로운 위치로 이동
+            handCards[i].MoveToPrs(newPRS[i],true,0.35f); //새로운 위치로 이동
         }
     }
 

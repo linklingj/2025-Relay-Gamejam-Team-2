@@ -8,30 +8,29 @@ public class ArcController : Singleton<ArcController>
     public GameObject dotPrefab; //중간 연결 점 그래픽
 
     [Header("Arc Settings")]
-    public float spacing = 10f;
-    public float arrowAngleAdjustment = 0f;
-    public int dotsToSkip = 1;
+    [SerializeField] private float spacing = 10f; //점과 점 사이 거리
+    private float arrowAngleAdjustment = 0f;
 
     [Header("Pool Settings")]
-    [SerializeField] private int poolSize = 50; //처음에 dorPrefab몇 개 소환할건지
+    [SerializeField] private int poolSize = 30; //처음에 dorPrefab몇 개 소환할건지
 
     private List<GameObject> pool = new List<GameObject>();
     private GameObject arrowInstance;
     private Vector3 arrowDirectionPoint;
-    private Camera camera;
-    private Transform startTrans;
+   [SerializeField] private RectTransform parent;
+   private RectTransform startRect;
     private bool isTargeting = false;
 
     private void Start()
     {
-        camera = Camera.main;
-        arrowInstance = Instantiate(arrowPrefab, transform);
+        arrowInstance = Instantiate(arrowPrefab, parent);
+        arrowInstance.gameObject.SetActive(false);
         InitializePool(poolSize);
     }
 
-    public void Targeting(Transform owner) //Owner 기준으로 화살표가 활성화됨
+    public void Targeting(RectTransform cardRect) 
     {
-        startTrans = owner;
+        startRect = cardRect;
         arrowInstance.SetActive(true);
         isTargeting = true;
     }
@@ -48,14 +47,11 @@ public class ArcController : Singleton<ArcController>
 
     private void Update()
     {
-        if (isTargeting) //타켓팅일 때 마우스의 위치로 화살표가 이동
+        if (isTargeting && startRect != null) //타켓팅일 때 마우스의 위치로 화살표가 이동
         {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = Mathf.Abs(camera.transform.position.z); // 스크린 → 월드 변환용 z
-            mousePos = camera.ScreenToWorldPoint(mousePos);
-
-            Vector3 startPos = startTrans.position;
-            Vector3 midPos = CalculateMidPoint(startPos, mousePos);
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 startPos = startRect.position;
+            Vector2 midPos = CalculateMidPoint(startPos, mousePos);
 
             UpdateArc(startPos, midPos, mousePos);
             PositionAndRotateArrow(mousePos);
@@ -67,7 +63,7 @@ public class ArcController : Singleton<ArcController>
     {
         for (int i = 0; i < count; i++)
         {
-            GameObject dot = Instantiate(dotPrefab, transform);
+            GameObject dot = Instantiate(dotPrefab, parent);
             dot.SetActive(false);
             pool.Add(dot);
         }
@@ -83,7 +79,7 @@ public class ArcController : Singleton<ArcController>
 
     private void UpdateArc(Vector3 start, Vector3 mid, Vector3 end)
     {
-        int numDots = Mathf.CeilToInt(Vector3.Distance(start, mid) / spacing);
+        int numDots = Mathf.CeilToInt(Vector2.Distance(start, mid) / spacing);
 
         for (int i = 0; i < numDots; i++)
         {
@@ -96,23 +92,24 @@ public class ArcController : Singleton<ArcController>
             }
 
             float t = Mathf.Clamp01(i / (float)numDots);
-            Vector3 pos = QuadraticBezierPoint(start, mid, end, t);
+            Vector2 pos = QuadraticBezierPoint(start, mid, end, t);
 
-            if (i != numDots - dotsToSkip)
+            if (i != numDots )
             {
-                pool[i].transform.position = pos;
+                RectTransform dotRect = pool[i].GetComponent<RectTransform>();
+                dotRect.position = pos;
                 pool[i].SetActive(true);
             }
 
             // 방향 벡터용 기준점 저장
-            if (i == numDots - (dotsToSkip + 1))
+            if (i == numDots -  1)
             {
                 arrowDirectionPoint = pos;
             }
         }
 
         // 나머지 dot 끄기
-        for (int i = numDots - dotsToSkip; i < pool.Count; i++)
+        for (int i = numDots; i < pool.Count; i++)
         {
             pool[i].SetActive(false);
         }
@@ -126,6 +123,8 @@ public class ArcController : Singleton<ArcController>
 
     private void PositionAndRotateArrow(Vector3 arrowPos) //화살표 rotate 및 위치 이동
     {
+        RectTransform arrowRect = arrowInstance.GetComponent<RectTransform>();
+        arrowRect.position = arrowPos;
         arrowInstance.transform.position = arrowPos;
 
         Vector3 dir = arrowPos - arrowDirectionPoint;
