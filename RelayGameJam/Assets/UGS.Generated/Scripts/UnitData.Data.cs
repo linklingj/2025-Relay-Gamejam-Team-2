@@ -56,9 +56,12 @@ namespace UnitData
 
 /* Fields. */
 
-		public System.Int32 index;
-		public System.Int32 intValue;
-		public System.String strValue;
+		public System.Int32 ID;
+		public System.String Name;
+		public System.String Information;
+		public System.String FirstCards;
+		public System.Int32 Hp;
+		public System.Int32 Mana;
   
 
 #region fuctions
@@ -176,7 +179,7 @@ namespace UnitData
                               
                             }
                             List.Add(instance); 
-                            Map.Add(instance.index, instance);
+                            Map.Add(instance.ID, instance);
                         }
                         if(isLoaded == false || forceReload)
                         { 

@@ -13,6 +13,7 @@ using GoogleSheet.Type;
 using System.Reflection;
 using UnityEngine;
 using CardData;
+using CardData;
 
 
 namespace CardData
@@ -61,6 +62,8 @@ namespace CardData
 		public System.String CardName;
 		public System.String ImageName;
 		public System.String CardInfor;
+		public System.Int32 IsTargeting;
+		public CardAttribute CardAttribute;
 		public CardAttackType CardAttackType;
 		public System.Int32 Value;
   
