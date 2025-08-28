@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 4d5063b293c4c964592cc247bc4914ae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1620432867311857192
+    second: dotweenpro_logo_0
+  - first:
+      213: 5580946637803620255
+    second: dotweenpro_logo_1
+  - first:
+      213: -6545557788082009472
+    second: dotweenpro_logo_2
+  - first:
+      213: -427279625483231716
+    second: dotweenpro_logo_3
+  - first:
+      213: 1426046947899944024
+    second: dotweenpro_logo_4
+  - first:
+      213: 7466255882874212282
+    second: dotweenpro_logo_5
+  - first:
+      213: -8229722669014144870
+    second: dotweenpro_logo_6
+  - first:
+      213: 3224864043761714038
+    second: dotweenpro_logo_7
+  - first:
+      213: -2317501063745959851
+    second: dotweenpro_logo_8
+  - first:
+      213: 5853356908759652790
+    second: dotweenpro_logo_9
+  - first:
+      213: -1849644845067205235
+    second: dotweenpro_logo_10
+  - first:
+      213: -2473817788924488171
+    second: dotweenpro_logo_11
+  - first:
+      213: 6876955240359208140
+    second: dotweenpro_logo_12
+  - first:
+      213: -602596024276440356
+    second: dotweenpro_logo_13
+  - first:
+      213: -5389790214504797613
+    second: dotweenpro_logo_14
+  - first:
+      213: 1788863490357660408
+    second: dotweenpro_logo_15
+  - first:
+      213: -8258425088199402875
+    second: dotweenpro_logo_16
+  - first:
+      213: 791251619956881076
+    second: dotweenpro_logo_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dotweenpro_logo_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 77
+        width: 241
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82ead7e7b1fec7610800000000000000
+      internalID: 1620432867311857192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 32
+        width: 34
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9702b0e561837d40800000000000000
+      internalID: 5580946637803620255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 32
+        width: 34
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08a84902fd18925a0800000000000000
+      internalID: -6545557788082009472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_3
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 32
+        width: 34
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1e5f47c17ff11af0800000000000000
+      internalID: -427279625483231716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_4
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 32
+        width: 41
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c2b92c4265ac310800000000000000
+      internalID: 1426046947899944024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_5
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 32
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abf43e4ea287d9760800000000000000
+      internalID: 7466255882874212282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_6
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 32
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a98ae61e5d62acd80800000000000000
+      internalID: -8229722669014144870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_7
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 32
+        width: 29
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673c85103c401cc20800000000000000
+      internalID: 3224864043761714038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55805d8af0596dfd0800000000000000
+      internalID: -2317501063745959851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_9
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9923a981d4b3150800000000000000
+      internalID: 5853356908759652790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_10
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d85032130ddb456e0800000000000000
+      internalID: -1849644845067205235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_11
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 0
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5161d1ce3db3badd0800000000000000
+      internalID: -2473817788924488171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_12
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 30
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc42fddfa5adf6f50800000000000000
+      internalID: 6876955240359208140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_13
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 0
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdaa0fdcb1623a7f0800000000000000
+      internalID: -602596024276440356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_14
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 0
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35aa0923b5e9335b0800000000000000
+      internalID: -5389790214504797613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_15
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa0f6eddd153d810800000000000000
+      internalID: 1788863490357660408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_16
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a53b5232e246d80800000000000000
+      internalID: -8258425088199402875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dotweenpro_logo_17
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 0
+        width: 16
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b67b77f7271bfa00800000000000000
+      internalID: 791251619956881076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dotweenpro_logo_0: 1620432867311857192
+      dotweenpro_logo_1: 5580946637803620255
+      dotweenpro_logo_10: -1849644845067205235
+      dotweenpro_logo_11: -2473817788924488171
+      dotweenpro_logo_12: 6876955240359208140
+      dotweenpro_logo_13: -602596024276440356
+      dotweenpro_logo_14: -5389790214504797613
+      dotweenpro_logo_15: 1788863490357660408
+      dotweenpro_logo_16: -8258425088199402875
+      dotweenpro_logo_17: 791251619956881076
+      dotweenpro_logo_2: -6545557788082009472
+      dotweenpro_logo_3: -427279625483231716
+      dotweenpro_logo_4: 1426046947899944024
+      dotweenpro_logo_5: 7466255882874212282
+      dotweenpro_logo_6: -8229722669014144870
+      dotweenpro_logo_7: 3224864043761714038
+      dotweenpro_logo_8: -2317501063745959851
+      dotweenpro_logo_9: 5853356908759652790
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
