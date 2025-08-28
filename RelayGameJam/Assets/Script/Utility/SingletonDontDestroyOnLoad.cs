@@ -10,7 +10,7 @@ public class SingletonDontDestroyOnLoad<T> : MonoBehaviour where T : SingletonDo
         {
             if (inst == null)
             {
-                inst = FindObjectOfType<T>();
+                inst = FindFirstObjectByType<T>();
 
                 if (inst == null)
                 {

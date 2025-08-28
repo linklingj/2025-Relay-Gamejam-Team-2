@@ -58,7 +58,7 @@ public class TurnManager : Singleton<TurnManager>
             //플레이어 팀 진영인지 확인
             Transform trans = isPlayerTeam ? playerSpawnTrans : enemySpawnTrans;
             //소환
-            var unit = Instantiate(isPlayerTeam?playerUnit:enemyUnit, trans.position + new Vector3(xPos,0), Quaternion.identity);
+            var unit = Instantiate(isPlayerTeam ? playerUnit:enemyUnit, trans.position + new Vector3(xPos,0), Quaternion.identity);
             unit.Init(unitDatas[i]);
             
             //각각에 맞는 팀에 추가

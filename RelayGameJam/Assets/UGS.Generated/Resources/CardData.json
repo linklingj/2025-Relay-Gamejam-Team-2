@@ -1,1 +1,170 @@
-{"jsonObject":{"Data":{"ID : int":["0","1","2","3","4","5","6","7","8","9","10"],"CardName : string":["흡입","방출","참격","한기","회복","마나 증폭","흡혈","광전사","에너지 충전","광대www","에너지 타격"],"ImageName : string":["test","test","test","test","test","test","test","test","test","test","test"],"CardInfor : string":["적의 피가 1/3 이하 일 경우 처형합니다","모은 에너지를 방출합니다 5 + 에너지당 5의 데미지를 입힙니다","충분히 강력합니다 4의 데미지를 줍니다","냉기를 뿜어냅니다 3의 데미지를 줍니다","체력을 3 회복합니다","마나를 2 회복합니다","5의 데미지를 주고 2을 회복합니다","2의 데미지를 받고 7의 데미지를 줍니다","에너지를 1 충전합니다","1~6까지 랜덤한 데미지를 줍니다","기를 모아 타격합니다 5의 데미지를 주고 1의 에너지를 얻습니다"],"IsTargeting:int":["1","1","1","1","1","1","1","1","1","1","1"],"CardAttribute:Enum<CardAttribute>":["Attack","Attack","Attack","Attack","Utility","Utility","Attack","Attack","Utility","Attack","Attack"],"CardAttackType:Enum<CardAttackType>":["All","All","Str","Spirit","All","All","Str","Str","All","Str","Str"],"cost:int":["4","3","1","1","1","1","2","2","2","1","3"],"Value:int":["0","0","4","3","5","0","5","7","0","0","5"],"SkillDetail:string":["ExecutionDamage","EnergyEvolve","null","null","Heal","IncreaseMana","Heal","Heal","EnergyCharge","RandomDamage","EnergyCharge"],"DetailValue:int":["3","5","0","0","3","2","2","-2","1","6","1"]}},"spreadSheetName":"CardData","spreadSheetID":"1nJw9cRSXM1rW6YK-3_j_NOx1eXk4KThbFQUEkaUfKEM","sheetIDList":["0"],"tableTypes":[0],"instruction":1,"error":null}
+{
+  "jsonObject": {
+    "Data": {
+      "ID : int": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "CardName : string": [
+        "흡입",
+        "방출",
+        "참격",
+        "한기",
+        "회복",
+        "마나 증폭",
+        "흡혈",
+        "광전사",
+        "에너지 충전",
+        "광대www",
+        "에너지 타격",
+        "Boo!"
+      ],
+      "ImageName : string": [
+        "test",
+        "test",
+        "test",
+        "test",
+        "test",
+        "test",
+        "test",
+        "test",
+        "test",
+        "test",
+        "test",
+        "ghost"
+      ],
+      "CardInfor : string": [
+        "적의 피가 1/3 이하 일 경우 처형합니다",
+        "모은 에너지를 방출합니다 5 + 에너지당 5의 데미지를 입힙니다",
+        "충분히 강력합니다 4의 데미지를 줍니다",
+        "냉기를 뿜어냅니다 3의 데미지를 줍니다",
+        "체력을 3 회복합니다",
+        "마나를 2 회복합니다",
+        "5의 데미지를 주고 2을 회복합니다",
+        "2의 데미지를 받고 7의 데미지를 줍니다",
+        "에너지를 1 충전합니다",
+        "1~6까지 랜덤한 데미지를 줍니다",
+        "기를 모아 타격합니다 5의 데미지를 주고 1의 에너지를 얻습니다",
+        "정신력 공격"
+      ],
+      "IsTargeting:int": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "CardAttribute:Enum<CardAttribute>": [
+        "Attack",
+        "Attack",
+        "Attack",
+        "Attack",
+        "Utility",
+        "Utility",
+        "Attack",
+        "Attack",
+        "Utility",
+        "Attack",
+        "Attack",
+        "Ghost"
+      ],
+      "CardAttackType:Enum<CardAttackType>": [
+        "All",
+        "All",
+        "Str",
+        "Spirit",
+        "All",
+        "All",
+        "Str",
+        "Str",
+        "All",
+        "Str",
+        "Str",
+        "Spirit"
+      ],
+      "cost:int": [
+        "4",
+        "3",
+        "1",
+        "1",
+        "1",
+        "1",
+        "2",
+        "2",
+        "2",
+        "1",
+        "3",
+        "0"
+      ],
+      "Value:int": [
+        "0",
+        "0",
+        "4",
+        "3",
+        "5",
+        "0",
+        "5",
+        "7",
+        "0",
+        "0",
+        "5",
+        "3"
+      ],
+      "SkillDetail:string": [
+        "ExecutionDamage",
+        "EnergyEvolve",
+        "null",
+        "null",
+        "Heal",
+        "IncreaseMana",
+        "Heal",
+        "Heal",
+        "EnergyCharge",
+        "RandomDamage",
+        "EnergyCharge",
+        "null"
+      ],
+      "DetailValue:int": [
+        "3",
+        "5",
+        "0",
+        "0",
+        "3",
+        "2",
+        "2",
+        "-2",
+        "1",
+        "6",
+        "1",
+        "0"
+      ]
+    }
+  },
+  "spreadSheetName": "CardData",
+  "spreadSheetID": "1nJw9cRSXM1rW6YK-3_j_NOx1eXk4KThbFQUEkaUfKEM",
+  "sheetIDList": [
+    "0"
+  ],
+  "tableTypes": [
+    0
+  ],
+  "instruction": 1,
+  "error": null
+}

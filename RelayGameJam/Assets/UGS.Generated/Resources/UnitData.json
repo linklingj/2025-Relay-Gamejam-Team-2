@@ -1,1 +1,72 @@
-{"jsonObject":{"Data":{"ID : int":["0","1","2","3","4"],"Name:string":["김재완","김재완","김재완","미친 최재현","미친 최재현"],"Team:Enum<Team>":["PlayerTeam","EnemyTeam","EnemyTeam","EnemyTeam","EnemyTeam"],"Information : string":[" 정보"," 정보"," 정보"," 플밍장이다"," 플밍장이다"],"ImageName : string":["test","test","test","ch","ch"],"FirstCards : string":["0,1,2,3","0,1,2,3","0,1,2,3","0,1,2,3","0,1,2,4"],"Hp : int":["40","15","8","12","10"],"Mana : int":["3","3","3","3","3"]}},"spreadSheetName":"UnitData","spreadSheetID":"1ZMGZ97d8-4Thc8fMVpLdlYGEhlthOiXkjPUerNsa3j8","sheetIDList":["0"],"tableTypes":[0],"instruction":1,"error":null}
+{
+  "jsonObject": {
+    "Data": {
+      "ID : int": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "Name:string": [
+        "김재완",
+        "김재완",
+        "김재완",
+        "미친 최재현",
+        "미친 최재현"
+      ],
+      "Team:Enum<Team>": [
+        "PlayerTeam",
+        "EnemyTeam",
+        "EnemyTeam",
+        "EnemyTeam",
+        "EnemyTeam"
+      ],
+      "Information : string": [
+        " 정보",
+        " 정보",
+        " 정보",
+        " 플밍장이다",
+        " 플밍장이다"
+      ],
+      "ImageName : string": [
+        "test",
+        "test",
+        "test",
+        "ch",
+        "ch"
+      ],
+      "FirstCards : string": [
+        "0,1,2,3",
+        "0,1,2,3",
+        "0,1,2,3",
+        "0,1,2,3",
+        "0,1,2,4"
+      ],
+      "Hp : int": [
+        "40",
+        "15",
+        "8",
+        "12",
+        "10"
+      ],
+      "Mana : int": [
+        "3",
+        "3",
+        "3",
+        "3",
+        "3"
+      ]
+    }
+  },
+  "spreadSheetName": "UnitData",
+  "spreadSheetID": "1ZMGZ97d8-4Thc8fMVpLdlYGEhlthOiXkjPUerNsa3j8",
+  "sheetIDList": [
+    "0"
+  ],
+  "tableTypes": [
+    0
+  ],
+  "instruction": 1,
+  "error": null
+}

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using GoogleSheet.Core.Type;
-using UnityEngine;
 
 namespace CardData
 {
@@ -14,15 +13,16 @@ namespace CardData
     [UGS(typeof(CardAttribute))]
     public enum CardAttribute
     {
-        Attack,Utility
+        Attack,Utility,Ghost
     }
     
 
     public class CardDataManager : SingletonDontDestroyOnLoad<CardDataManager>
     {
         public List<SkillBase> Skills = new List<SkillBase>();
-        private void Awake()
+        private new void Awake()
         {
+            base.Awake();
             Data.Load(); //구글 시트 에셋을 사용할 때 데이터를 불러올 때 이렇게 Load해줘야 합니다.
             foreach (var cardData in Data.DataList)
             {
@@ -34,6 +34,11 @@ namespace CardData
                     case CardAttribute.Utility:
                         Skills.Add(new UtilitySkill(cardData));
                         break;
+                    case CardAttribute.Ghost:
+                        // TODO: 귀신 카드 스킬 구현
+                        throw new  NotImplementedException();
+                    default:
+                        continue;
                 }
             }
            
