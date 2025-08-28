@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.TextCore.Text;
+
+public class PlayerController : CharacterController<PlayerController>
+{
+    protected override void Awake()
+    {
+        base.Awake();
+        IState<PlayerController> Idle = new PlayerIdle();
+        IState<PlayerController> Attack = new PlayerAttack();
+        AddStates(State.Idle,Idle);
+        AddStates(State.Attack,Attack);
+        
+        m_stateMachine = new StateMachine<PlayerController>(this,m_states[State.Idle]);
+    }
+
+
+
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+}
