@@ -86,7 +86,7 @@ public class Unit : MonoBehaviour
             else //일단 적만 처리 해놨습니다.
             {
                 Destroy(hpBar.gameObject);
-                TurnManager.Inst.CheckEnemy(transform);
+                TurnManager.Inst.RemoveEnemy(this);
                 Destroy(gameObject);
             }
         }

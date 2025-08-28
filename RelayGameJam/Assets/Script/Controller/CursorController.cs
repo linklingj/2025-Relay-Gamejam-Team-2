@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcController : Singleton<ArcController>
+public class CursorController : Singleton<CursorController>
 {
     [Header("Prefabs")]
     public GameObject arrowPrefab; //화살표 꼬리
@@ -14,11 +14,11 @@ public class ArcController : Singleton<ArcController>
     [Header("Pool Settings")]
     [SerializeField] private int poolSize = 30; //처음에 dorPrefab몇 개 소환할건지
 
-    private List<GameObject> pool = new List<GameObject>();
+    private List<GameObject> pool = new();
     private GameObject arrowInstance;
     private Vector3 arrowDirectionPoint;
-   [SerializeField] private RectTransform parent;
-   private RectTransform startRect;
+    [SerializeField] private RectTransform parent;
+    private RectTransform startRect;
     private bool isTargeting = false;
 
     private void Start()

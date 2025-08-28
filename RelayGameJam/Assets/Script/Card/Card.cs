@@ -45,7 +45,7 @@ namespace CardData
                 {
             
                     case 1:
-                        ArcController.Inst.Targeting(rect); //타겟팅이 필요한 skill이라면 타겟팅 실행
+                        CursorController.Inst.Targeting(rect); //타겟팅이 필요한 skill이라면 타겟팅 실행
                         break;
                 }
             }

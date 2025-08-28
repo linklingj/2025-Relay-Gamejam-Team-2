@@ -20,7 +20,7 @@ namespace CardData
     public class CardDataManager : SingletonDontDestroyOnLoad<CardDataManager>
     {
         public List<SkillBase> Skills = new List<SkillBase>();
-        private new void Awake()
+        private void Awake()
         {
             base.Awake();
             Data.Load(); //구글 시트 에셋을 사용할 때 데이터를 불러올 때 이렇게 Load해줘야 합니다.
@@ -36,7 +36,7 @@ namespace CardData
                         break;
                     case CardAttribute.Ghost:
                         // TODO: 귀신 카드 스킬 구현
-                        throw new  NotImplementedException();
+                        // throw new  NotImplementedException();
                     default:
                         continue;
                 }
