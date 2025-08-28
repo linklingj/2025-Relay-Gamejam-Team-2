@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 1e57e68c97f72d948b5f7e91b7a005fc
+guid: acec497e7442a6c499ccb0d0bbd9c21b
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Style/Pixel/Pixel Outline.asset
+  uploadId: 731065

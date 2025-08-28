@@ -1,2 +1,18 @@
 fileFormatVersion: 2
-guid: 8d895750d3354c748a600f8d5caa7532
+guid: f06cc1d4b3c9200429bfa12351da082e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Scripts/Settings/CollisionSettings.cs
+  uploadId: 731065

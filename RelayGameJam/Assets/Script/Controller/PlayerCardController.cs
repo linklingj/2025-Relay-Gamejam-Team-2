@@ -154,6 +154,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
             var spawnCard= Instantiate(cardPrefab,cardSpawnPos.position,Quaternion.identity,cardSpawnParent);
             spawnCard.Inject(this);
             spawnCard.Init(skill);
+            Debug.Log(skill);
             handCards.Add(spawnCard);
             
             CardAlignment(); //카드 정렬

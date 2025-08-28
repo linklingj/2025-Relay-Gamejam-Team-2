@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 69cec6bbc32b9fb43a6256267b003c3a
+guid: a50e85261c47743468fb8649eced36e7
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Materials/Pixel/Pixel-Shadow.asset
+  uploadId: 731065

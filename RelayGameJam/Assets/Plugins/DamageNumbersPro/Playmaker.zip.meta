@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 2740ce7b4451b0f4280e76027a1a27d1
+guid: ab24f20f8bcd62945a196eefa901bb54
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Playmaker.zip
+  uploadId: 731065

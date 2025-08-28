@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: ed0799a3ab1d66648896131797bad351
+guid: f4c2563ab83d1ea4fae9071725efc6d4
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/3D/Saw Neon.prefab
+  uploadId: 731065

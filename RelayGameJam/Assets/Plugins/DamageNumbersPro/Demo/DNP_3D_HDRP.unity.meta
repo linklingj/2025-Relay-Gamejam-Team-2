@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 11f246f2b0e80f24a94862a9f42e05a2
+guid: 6a82385ef6e16cf41974ebe3afb39959
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/DNP_3D_HDRP.unity
+  uploadId: 731065

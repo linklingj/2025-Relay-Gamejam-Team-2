@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: acd4600a6fadc5846a42c621d6016077
+guid: f43acbafbb4b8cd4fbeb6b116da505bf
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/UI/Poison.prefab
+  uploadId: 731065

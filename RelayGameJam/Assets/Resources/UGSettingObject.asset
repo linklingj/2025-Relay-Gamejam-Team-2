@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65742e7a9b971e242888935dd58a15a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 034f408a0269997468c63414f18bb085, type: 3}
   m_Name: UGSettingObject
   m_EditorClassIdentifier: 
   ScriptURL: https://script.google.com/macros/s/AKfycbx7yuXYInj4yTnMZhiZyiTTk4CI2G9rv4sqqq9Epj01XBLftz713ndP4142WuTv1dMm/exec

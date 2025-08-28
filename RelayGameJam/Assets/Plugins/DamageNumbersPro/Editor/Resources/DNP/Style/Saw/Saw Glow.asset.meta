@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 46b6d623121fa37498137e4451a7b3cf
+guid: 1aa62f523454b884fa4f49a00c554b71
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Style/Saw/Saw Glow.asset
+  uploadId: 731065

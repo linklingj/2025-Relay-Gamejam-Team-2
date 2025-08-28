@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: f41249f0523dcd1409f79017d3447528
+guid: 0ef10dce9f028574c946e3bb9bc1444a
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Documentation.url
+  uploadId: 731065

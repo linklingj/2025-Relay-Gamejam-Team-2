@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 9b339f5d420a3ad4fad6eecce85539b1
+guid: ccbd9b9efbeb19e4eaf872bcfabec7c6
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/DNP_3D.unity
+  uploadId: 731065

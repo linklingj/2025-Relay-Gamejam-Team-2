@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 77a39af9dca86fc4dac584e92b127dbb
+guid: bb8475407f2eba44f897228b54b5b571
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/UI/Comic.prefab
+  uploadId: 731065

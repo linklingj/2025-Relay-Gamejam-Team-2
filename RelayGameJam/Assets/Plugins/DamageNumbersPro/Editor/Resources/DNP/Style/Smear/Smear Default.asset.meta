@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: cf0bd9b31089c04429a1ec7386bc4f5e
+guid: fd22ee73ad1bf384087cd8185ccaf7f6
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Style/Smear/Smear Default.asset
+  uploadId: 731065

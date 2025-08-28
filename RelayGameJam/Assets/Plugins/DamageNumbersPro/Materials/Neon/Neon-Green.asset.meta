@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: f0f12e85ec98ce64cbba8b9babda312a
+guid: 08ef533dfb5dea14ea4f9e6b0b0ec846
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Materials/Neon/Neon-Green.asset
+  uploadId: 731065

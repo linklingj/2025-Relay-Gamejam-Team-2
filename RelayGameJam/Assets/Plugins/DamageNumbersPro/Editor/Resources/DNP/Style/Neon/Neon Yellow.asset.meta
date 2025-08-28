@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: d10bc4943ce19c448b28258f080e7a6e
+guid: 799e7e9963fd03a4d94ef07ab81663c9
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Style/Neon/Neon Yellow.asset
+  uploadId: 731065

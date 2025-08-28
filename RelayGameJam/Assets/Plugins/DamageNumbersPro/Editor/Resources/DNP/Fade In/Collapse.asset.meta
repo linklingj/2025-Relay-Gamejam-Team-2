@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 234580328da7bb741a307261fa794478
+guid: 202ca3478e7ddd84ba65f5f850665aae
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Fade In/Collapse.asset
+  uploadId: 731065

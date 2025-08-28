@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 29a9cf1fbc3cca445bb427a05b88a411
+guid: 423dcf85ee960044d83d552acb42d3bf
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/2D/Decimals.prefab
+  uploadId: 731065

@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: fe702998240f6694897ae25084d0b7ad
+guid: 4deac353ca1fcbb4c88d2916df7bde00
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Materials/Bloody/Blood-Gore.asset
+  uploadId: 731065

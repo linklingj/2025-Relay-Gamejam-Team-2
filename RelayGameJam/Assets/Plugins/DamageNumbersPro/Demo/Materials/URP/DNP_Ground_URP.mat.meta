@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: ddf3bdd3dbd71d64a9230efc02961d7d
+guid: 83f8113972585e74c9cd3845bb979c9a
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Materials/URP/DNP_Ground_URP.mat
+  uploadId: 731065

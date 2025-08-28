@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: d56e8f307e2fe824da8cb5c452a5b1e0
+guid: d7dfc82b267eca34398f03aa442f308c
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/UI/Experience.prefab
+  uploadId: 731065

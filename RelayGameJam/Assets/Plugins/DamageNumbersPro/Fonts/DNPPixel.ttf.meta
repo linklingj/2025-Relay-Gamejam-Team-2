@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 18aa7d8537867d247a597b31b05d6cd3
+guid: a6a9e8503517d794a964cf99c9d9a3e8
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,6 +8,7 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
+  fontName: DNP Pixel
   fontNames:
   - DNP Pixel
   fallbackFontReferences: []
@@ -19,3 +20,10 @@ TrueTypeFontImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Fonts/DNPPixel.ttf
+  uploadId: 731065

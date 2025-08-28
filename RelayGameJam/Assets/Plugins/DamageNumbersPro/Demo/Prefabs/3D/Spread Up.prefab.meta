@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: d49001f6360ca474c8941cd6392f7a78
+guid: ff6ccbdf0473c9345969fa347ed9d6f6
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/3D/Spread Up.prefab
+  uploadId: 731065

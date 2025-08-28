@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: d858b509a6e03ef4e88ee2b80c684b3f
+guid: 43c63651f121310428046091cc36f86e
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Fade Out/Pop.asset
+  uploadId: 731065

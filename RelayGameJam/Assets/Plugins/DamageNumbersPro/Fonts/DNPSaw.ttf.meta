@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b620f8331f0f34847808dd03b2db0733
+guid: 62d3d1fbd207dff4280e78f60fd6f2aa
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,6 +8,7 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
+  fontName: DNP Saw
   fontNames:
   - DNP Saw
   fallbackFontReferences: []
@@ -19,3 +20,10 @@ TrueTypeFontImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Fonts/DNPSaw.ttf
+  uploadId: 731065

@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: b5c7ba265a662cc4bb3f815dba45049c
+guid: cb1cd9840be74194da4221d3507971a0
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Materials/Standard/DNP_Highlight.mat
+  uploadId: 731065

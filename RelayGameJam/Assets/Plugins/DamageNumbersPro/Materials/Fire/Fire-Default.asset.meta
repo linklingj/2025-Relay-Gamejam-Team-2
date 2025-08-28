@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: dcd162cf330add246b6e48b191862f7e
+guid: 4749cc7babdec554bb694d4542339f55
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Materials/Fire/Fire-Default.asset
+  uploadId: 731065

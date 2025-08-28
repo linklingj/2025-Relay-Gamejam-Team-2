@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 4a702c327a5e62146b97287a8b294b68
+guid: 75245991e22178143bc2ad67d7462080
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/2D/Pixel Text.prefab
+  uploadId: 731065

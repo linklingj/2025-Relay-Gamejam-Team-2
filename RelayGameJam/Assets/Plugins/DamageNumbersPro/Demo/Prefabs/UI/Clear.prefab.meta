@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 308242570fce2284bb69113d071eeb21
+guid: 9499ffb745915a94c8250100f106db55
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Demo/Prefabs/UI/Clear.prefab
+  uploadId: 731065

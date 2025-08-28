@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: c94fe53a07d07444d98ec9a9e7a1e91d
+guid: 21f574ce17f361646a258394834b3cdc
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Style/Pixel/Pixel Default.asset
+  uploadId: 731065

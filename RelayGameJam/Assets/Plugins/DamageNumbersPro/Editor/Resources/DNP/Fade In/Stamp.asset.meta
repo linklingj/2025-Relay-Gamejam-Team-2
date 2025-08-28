@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 2cb1fb351a071d1429e0b7cd35ba82fb
+guid: 0e3ee219e45a6934a9603571d8df6e0f
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186447
+  packageName: Damage Numbers Pro
+  packageVersion: 4.47
+  assetPath: Assets/DamageNumbersPro/Editor/Resources/DNP/Fade In/Stamp.asset
+  uploadId: 731065
