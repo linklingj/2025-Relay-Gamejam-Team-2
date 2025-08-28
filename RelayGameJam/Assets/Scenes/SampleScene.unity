@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2024,7 +2024,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2334,7 +2334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   left: {fileID: 992790626}
-  right: {fileID: 827025289}
+  right: {fileID: 646249233}
   cardSpawnParent: {fileID: 2029768147}
   cardSpawnPos: {fileID: 827025289}
   cardPrefab: {fileID: 2798762455757636370, guid: 6b2bb69523948bc488677b293d770e5b, type: 3}
@@ -2887,7 +2887,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4192,7 +4192,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4381,7 +4381,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4546,8 +4546,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: n/N
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
+  m_sharedMaterial: {fileID: 4868441489254609289, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5104,8 +5104,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SSSSS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a8df2caccd8dff14aa5f09beaad6cc52, type: 2}
-  m_sharedMaterial: {fileID: -7900790466791434564, guid: a8df2caccd8dff14aa5f09beaad6cc52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
+  m_sharedMaterial: {fileID: 4868441489254609289, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

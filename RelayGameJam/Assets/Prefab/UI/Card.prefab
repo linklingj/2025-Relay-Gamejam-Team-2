@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE74\uB4DC\uC774\uB984"
+  m_text: "\uCE74"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8718c8bffe21e9f43a8f2d23557a77bc, type: 2}
-  m_sharedMaterial: {fileID: -5058080568250043072, guid: 8718c8bffe21e9f43a8f2d23557a77bc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
+  m_sharedMaterial: {fileID: 4868441489254609289, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -520,8 +520,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: N
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8718c8bffe21e9f43a8f2d23557a77bc, type: 2}
-  m_sharedMaterial: {fileID: -5058080568250043072, guid: 8718c8bffe21e9f43a8f2d23557a77bc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
+  m_sharedMaterial: {fileID: 4868441489254609289, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -656,8 +656,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC815\uBCF4 \uD14D\uC2A4\uD2B8"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8718c8bffe21e9f43a8f2d23557a77bc, type: 2}
-  m_sharedMaterial: {fileID: -5058080568250043072, guid: 8718c8bffe21e9f43a8f2d23557a77bc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
+  m_sharedMaterial: {fileID: 4868441489254609289, guid: 2ddded6d65b20014e9da42cca5287fa7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
