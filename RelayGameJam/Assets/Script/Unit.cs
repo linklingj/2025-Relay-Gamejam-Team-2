@@ -1,6 +1,9 @@
 using System;
+using GoogleSheet.Core.Type;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[UGS(typeof(Team))]
 public enum Team
 {
     PlayerTeam,EnemyTeam
@@ -9,10 +12,12 @@ public class Unit : MonoBehaviour
 {
     [SerializeField] Team team;
     private Animator animator;
-    private Stat hp,ghostStack;
+    private Stat hp,energyStack;
     private UnitData.Data data;
     private IChangeState changeState;
     [SerializeField] private HpBar hpBarPrefab;
+    [SerializeField] private Transform energyPrefab;
+    [SerializeField] private Transform energyTrans;
     private HpBar hpBar;
     
     private PlayerController _playerController;
@@ -23,6 +28,7 @@ public class Unit : MonoBehaviour
     {
         changeState = GetComponent<IChangeState>();
         animator = GetComponent<Animator>();
+        animator?.Play("Idle");
         
         if(team == Team.PlayerTeam) _playerController = GetComponent<PlayerController>();
         else _enemyController = GetComponent<EnemyController>();
@@ -36,15 +42,30 @@ public class Unit : MonoBehaviour
     {
         this.data = data;
         hp = Stat.Create(data.Hp); //스탯 생성
-        ghostStack = Stat.Create(0); //흡입 스킬 스택
+        energyStack = Stat.Create(0); //흡입 스킬 스택
         hp.SetMaxValue(data.Hp);
         hp.OnValueChanged += OnDead; //hp의 값이 변경될때 실행되게 됩니다
+        energyStack.OnValueChanged += EnergyAlign;
         hpBar = Instantiate(hpBarPrefab, UIController.Inst.GetCanvasTrans());  //hpbar 생성
         hpBar.Init(data.Hp,transform);
     }
 
+    private void EnergyAlign(float value) //에너지 표시 정렬
+    {
+        foreach (Transform child in energyTrans)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < value; i++)
+        {
+            var a = Instantiate(energyPrefab, energyTrans);
+            a.position += i  * new Vector3(0, 0.65f);
+        }
+        
+    }
+
     public Stat GetStatHp() => hp;
-    public Stat GetStatGhost() => ghostStack;
+    public Stat GetStatEnergy() => energyStack;
 
     public void OnDamage(float value) //데미지 받았을 때 실행시키는 함수
     {
@@ -59,6 +80,7 @@ public class Unit : MonoBehaviour
         {
             if (team == Team.PlayerTeam)
             {
+                FadeInFadeOutManager.Inst.FadeOut(SceneManager.GetActiveScene().buildIndex,true);
                 //게임오버
             }
             else //일단 적만 처리 해놨습니다.
