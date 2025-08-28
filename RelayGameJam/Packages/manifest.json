@@ -5,6 +5,7 @@
     "com.unity.multiplayer.center": "1.0.0",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.render-pipelines.core": "17.1.0",
+    "com.unity.render-pipelines.universal": "17.1.0",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.8",
     "com.unity.modules.accessibility": "1.0.0",
