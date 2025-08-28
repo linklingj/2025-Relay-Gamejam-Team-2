@@ -14,6 +14,10 @@ public class ExecutionDamage : SkillDetails
     public override void DetailAction(Unit targetUnit, Unit ownerUnit)
     {
         var f = targetUnit.GetStatHp().maxValue / value;
-        if(targetUnit.GetStatHp().baseValue <= f) targetUnit.OnDamage(targetUnit.GetStatHp().baseValue);
+        if (targetUnit.GetStatHp().baseValue <= f)
+        {
+            Debug.Log(targetUnit.GetStatHp().baseValue + " 처형피는 : "+f);
+            targetUnit.OnDamage(targetUnit.GetStatHp().baseValue);
+        }
     }
 }

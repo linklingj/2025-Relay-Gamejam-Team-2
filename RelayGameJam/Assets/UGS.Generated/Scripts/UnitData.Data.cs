@@ -58,6 +58,7 @@ namespace UnitData
 
 		public System.Int32 ID;
 		public System.String Name;
+		public Team Team;
 		public System.String Information;
 		public System.String ImageName;
 		public System.String FirstCards;

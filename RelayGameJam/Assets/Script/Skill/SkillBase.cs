@@ -17,7 +17,7 @@ namespace CardData
             //세부 스킬을 이름을 통해 찾는 함수 
             //구글 시트에서 SkillDetail 부분을 스크립트 명과 똑같이 적어야함
             skillDetail =SkillDetailsFactory.GetSkillByName(data.SkillDetail); 
-            skillDetail?.Init(data.DetailValue);
+            skillDetail?.Init(data.DetailValue); //skillDetail에는 DetailVlaue값이 들어갑니다
         }
 
         public abstract void SkillAction(Unit targetUnit,Unit ownerUnit);

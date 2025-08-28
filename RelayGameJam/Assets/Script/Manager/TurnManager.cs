@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using VInspector;
+using Random = UnityEngine.Random;
 
 public class TurnManager : Singleton<TurnManager>
 {
@@ -18,6 +21,7 @@ public class TurnManager : Singleton<TurnManager>
     [SerializeField] private List<Unit> enemyTeams; //현재 적 팀의 캐릭터들을 저장
     
     [SerializeField] private Unit playerUnit,enemyUnit;
+    
 
     private int enemyAttackCount = 0;
 
@@ -27,7 +31,10 @@ public class TurnManager : Singleton<TurnManager>
         turnEndBtn.onClick.AddListener(() => PlayerCardController.Inst.ResetMana()); //마나 초기화 함수
         
         SpawnUnits(UnitData.Data.DataList[DataManager.Inst.Data.playerCharacterId],true);
-        SpawnUnits(UnitData.Data.DataList[1],false);
+        var randomEnemies = UnitData.Data.DataList.Where(d => d.Team == Team.EnemyTeam).ToList()
+            .DupRandomT(Random.Range(1, 4 + 1));
+        Debug.Log(randomEnemies.Count());
+        SpawnUnits(randomEnemies,false);
         ChangeUnitState(player,State.Attack);
     }
 
@@ -70,7 +77,7 @@ public class TurnManager : Singleton<TurnManager>
     public void CheckEnemy(Transform transform) //현재 적이 존재하는 지 확인하는 코드입니다.
     {
         enemyTeams.Remove(transform.GetComponent<Unit>()); //적 팀에서 죽은 적을 뺍니다.
-        if(enemyTeams.Count <= 0)Debug.Log("라운드 종료"); //적의 개수가 0이라면 라운드를 종료합니다.
+        if(enemyTeams.Count <= 0)FadeInFadeOutManager.Inst.FadeOut(SceneManager.GetActiveScene().buildIndex,true); //적의 개수가 0이라면 라운드를 종료합니다.
     }
     
     

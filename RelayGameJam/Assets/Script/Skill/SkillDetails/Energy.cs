@@ -4,7 +4,7 @@ public class EnergyCharge : SkillDetails
 {
     public override void DetailAction(Unit targetUnit, Unit ownerUnit)
     {
-        ownerUnit.GetStatGhost().AddValue(value);
+        ownerUnit.GetStatEnergy().AddValue(value);
     }
 }
 
@@ -12,7 +12,7 @@ public class EnergyEvolve : SkillDetails
 {
     public override void DetailAction(Unit targetUnit, Unit ownerUnit)
     {
-        targetUnit.OnDamage((ownerUnit.GetStatGhost().baseValue*value) +5);
-        ownerUnit.GetStatGhost().SetBaseValue(0);
+        targetUnit.OnDamage((ownerUnit.GetStatEnergy().baseValue*value) +5);
+        ownerUnit.GetStatEnergy().SetBaseValue(0);
     }
 }
