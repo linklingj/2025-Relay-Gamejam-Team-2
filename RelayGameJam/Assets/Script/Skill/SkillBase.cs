@@ -31,16 +31,17 @@ namespace CardData
 
 public static class SkillDetailsFactory
 {
-    private static Dictionary<string, SkillDetails> cache = new();
+    //private static Dictionary<string, SkillDetails> cache = new();
 
     public static SkillDetails GetSkillByName(string className)
     {
         if(className == "null")return null;
+        /*
         // 캐시에 있으면 바로 반환
         if (cache.TryGetValue(className, out var cachedInstance))
         {
             return cachedInstance;
-        }
+        }*/
 
         // 타입 찾기
         Type type = Type.GetType(className);
@@ -49,7 +50,7 @@ public static class SkillDetailsFactory
         {
             // 인스턴스 생성 후 캐시에 저장
             var instance = Activator.CreateInstance(type) as SkillDetails;
-            cache[className] = instance;
+           // cache[className] = instance;
             return instance;
         }
 

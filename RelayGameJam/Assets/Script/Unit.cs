@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
 {
     [SerializeField] Team team;
     private Animator animator;
-    private Stat hp;
+    private Stat hp,ghostStack;
     private UnitData.Data data;
     private IChangeState changeState;
     [SerializeField] private HpBar hpBarPrefab;
@@ -36,12 +36,15 @@ public class Unit : MonoBehaviour
     {
         this.data = data;
         hp = Stat.Create(data.Hp); //스탯 생성
+        ghostStack = Stat.Create(0); //흡입 스킬 스택
+        hp.SetMaxValue(data.Hp);
         hp.OnValueChanged += OnDead; //hp의 값이 변경될때 실행되게 됩니다
         hpBar = Instantiate(hpBarPrefab, UIController.Inst.GetCanvasTrans());  //hpbar 생성
         hpBar.Init(data.Hp,transform);
     }
 
     public Stat GetStatHp() => hp;
+    public Stat GetStatGhost() => ghostStack;
 
     public void OnDamage(float value) //데미지 받았을 때 실행시키는 함수
     {
