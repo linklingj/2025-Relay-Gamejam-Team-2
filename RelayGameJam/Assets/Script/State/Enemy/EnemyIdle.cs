@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyIdle : MonoBehaviour,IState<EnemyController>
+public class EnemyIdle : IState<EnemyController>
 {
     private IState<EnemyController> _enemyController;
     public void OperateEnter(EnemyController sender)

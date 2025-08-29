@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerIdle : MonoBehaviour,IState<PlayerController>
+public class PlayerIdle : IState<PlayerController>
 {
     private PlayerController _playerController;
     

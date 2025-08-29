@@ -61,9 +61,9 @@ namespace UnitData
 		public Team Team;
 		public System.String Information;
 		public System.String ImageName;
-		public System.String FirstCards;
+		public System.Int32 damage;
 		public System.Int32 Hp;
-		public System.Int32 Mana;
+		public System.Int32 addCard;
   
 
 #region fuctions

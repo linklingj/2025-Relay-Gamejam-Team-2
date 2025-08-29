@@ -1,6 +1,5 @@
 using System;
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -58,9 +57,4 @@ public class FadeInFadeOutManager : SingletonDontDestroyOnLoad<FadeInFadeOutMana
     }
 
     #endregion
-    
-   
-
-    
-    
 }

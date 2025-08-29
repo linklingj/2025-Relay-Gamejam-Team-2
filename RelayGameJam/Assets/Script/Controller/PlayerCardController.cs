@@ -2,10 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CardData;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 using VInspector;
 
 public class PRS //위치,회전,스케일 저장
@@ -24,151 +23,241 @@ public class PRS //위치,회전,스케일 저장
     }
 }
 
-public class PlayerCardController : Singleton<PlayerCardController>
+public class PlayerCardController : Singleton<PlayerCardController>, ICardService
 {
-    [SerializeField] private List<SkillBase> allSkills = new List<SkillBase>(); //플레이어가 보유한 전체 카드
-    private Queue<SkillBase> remainSkills = new Queue<SkillBase>(); //남아 있는 카드
-    private List<Card> handCards = new List<Card>(); //현재 손에 들고 있는 카드
+    #region PlayerCard
+
+    public Unit owner;
+    public Queue<SkillBase> cardDeck { get; private set; }
+    public List<Card> handCards { get; private set; }
     
+    public Card selectedCard { get; private set; }
+    private bool isCardSelected => selectedCard;
+    private bool onShowCard; //카드를 보여주는가
+    private bool activeInput;
+    #endregion
+    
+    #region ManaStatus
+    private int curMana;
+    private int maxMana;
+    public event Action<int> OnManaChange;
+    #endregion
+    
+    
+    #region Object Setting
+    [Foldout("Object Setting")]
     [SerializeField] private RectTransform left, right; //카드 hand의 끄트머리 위치 및 회전값
     [SerializeField] private RectTransform cardSpawnParent; //카드를 소환할 부모
     [SerializeField] private Transform cardSpawnPos; //카드를 소환할 위치
     [SerializeField] private Card cardPrefab;
-    private Card selectedCard; //현재 선택한 카드
-    private int maxHandCardCount = 7; //한 손에 들 수 있는 최대 카드의 양
-    private bool isCardSelected = false; //카드가 선택 되었는가
-    private bool isShow = false; //카드를 보여주는가
+    [SerializeField] private TextMeshProUGUI manaText;
+    [SerializeField] private Button DrawButton;
+    #endregion
 
-    [FormerlySerializedAs("costTxt")] [SerializeField] private TextMeshProUGUI manaTxt;
-    private int curMana = 3,maxMana = 3;
-
-    private void Start()
+    private void Awake()
     {
-        FillSkills();
-        UpdateMana();
+        ActiveInput();
+        handCards = new();
     }
 
-    //카드를 가져옴
+    public void Init(Unit owner, int _maxMana, List<SkillBase> _cardDeck)
+    {
+        this.owner = owner;
+        // 마나 초기설정
+        maxMana = _maxMana;
+        curMana = _maxMana;
+        
+        // 덱 설정
+        _cardDeck.Shuffle();
+        cardDeck = new Queue<SkillBase>(_cardDeck);
+        OnManaChange += UpdateManaUI;
+    }
+
+    void Update()
+    {
+        if (!isCardSelected || !activeInput)
+            return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Targeting();
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            UnSelectCard();
+        }
+    }
+
+    public void ActiveInput()
+    {
+        activeInput = true;
+        DrawButton.gameObject.SetActive(true);
+        DrawButton.onClick.AddListener(() => DrawCard(1));
+    }
+
+    public void InactiveInput()
+    {
+        activeInput = false;
+        DrawButton.gameObject.SetActive(false);
+        DrawButton.onClick.RemoveAllListeners();
+    }
+
+    /// <summary>
+    /// 카드 불러오기
+    /// </summary>
+    /// <param name="amount">불러올 카드 수량</param>
     [Button]
-    public void GetCards(int value = 3)
+    public void DrawCard(int amount)
     {
-        StartCoroutine(IESpawnCards(value));
+        StartCoroutine(IESpawnCard(amount));
     }
 
+    public void HighlightCard(Card card)
+    {
+        if (!isCardSelected)
+        {
+            card.SetHighlight(true);
+            card.onClick += SelectCard;
+        }
+    }
+
+    public void UnHighlightCard(Card card)
+    {
+        if (!isCardSelected)
+        {
+            card.SetHighlight(false);
+            card.onClick -= SelectCard;
+        }
+    }
+
+    public void SelectCard(Card card)
+    {
+        Debug.Log($"Card selected: {card}");
+        card.onClick -= SelectCard;
+        card.SetHighlight(true);
+        CursorController.Inst.Targeting(card.transform as RectTransform);
+        selectedCard = card;
+    }
+    
+    public void UnSelectCard()
+    {
+        if (isCardSelected)
+        {
+            selectedCard.SetHighlight(false);
+            selectedCard = null;
+            CursorController.Inst.UnTargeting();
+        }
+    }
+
+    public void RemoveCard(Card card)
+    {
+        UnSelectCard(); // 스킬 선택 해제
+            
+        handCards.Remove(card); //손에 있는 카드 없애기
+        Destroy(card.gameObject); //오브젝트 삭제
+        CardAlignment(); //남은 카드 정렬
+    }
+
+    public void ExecuteCard(Card card, Unit target)
+    {
+        // 스킬 사용
+        card.skill.SkillAction(target,owner); //스킬 사용
+        AddMana(-card.skill.data.cost); // 마나 소모
+        
+        // 스킬 삭제
+        RemoveCard(card);
+    }
+
+    /// <summary>
+    /// 마나 변화
+    /// </summary>
+    /// <param name="value">변화할 마나량</param>
     public void AddMana(int value)
     {
         curMana += value;   
-        UpdateMana();
+        OnManaChange?.Invoke(curMana);;
     }
     
-    public void ResetMana()
+    /// <summary>
+    /// 마나를 최대치로 초기화
+    /// </summary>
+    public void ResetMana(int maxMana)
     {
         curMana = maxMana;
-        UpdateMana();
+        
+        OnManaChange?.Invoke(curMana);
     }
 
-    private void UpdateMana()
+    /// <summary>
+    /// 마나표시 갱신
+    /// </summary>
+    private void UpdateManaUI(int _curMana)
     {
-        manaTxt.text = curMana.ToString() + "/" + maxMana.ToString();
-    }
-
-    private void Update()
-    {
-       UnSelect();
-       Targeting();
-       ShowCardsPos();
-    }
-
-    //마우스가 위에 있을 때는 카드 전체가 내려가고 마우스가 아래에 있을 때는 카드 전체가 올라가는 코드
-    private void ShowCardsPos() 
-    {
-        float checkY = -2.5f;
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePos.y < checkY && !isShow)
-        {
-            cardSpawnParent.DOAnchorPos(new Vector2(0,0),0.25f);
-            isShow = true;
-        }
-        else if(isShow && mousePos.y >= checkY)
-        {
-            cardSpawnParent.DOAnchorPos(new Vector2(0,-200),0.25f);
-            isShow = false;
-        }
+        manaText.text = $"{_curMana}/{maxMana}";
     }
 
     #region Targeting and Using
-    private void Targeting() //카트를 선택했을 때 카드가 타겟팅 스킬이라면 Arc로 타겟팅
+    /// <summary>
+    /// 스킬 대상 타게팅
+    /// </summary>
+    private void Targeting()
     {
-        if (isCardSelected && Input.GetMouseButtonDown(0))
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        if (!isCardSelected) return;
+        
+        // Ray로 타겟 대상 확인
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             
-            //Unit오브젝트를 선택했다면 해당 Unit에세 스킬 사용
-            if (hit.collider != null && hit.transform.TryGetComponent<Unit>( out Unit u) )
-            {
-                if (selectedCard.skill.data.cost > curMana)
-                {
-                    UnSelect();
-                    return;
-                }
-                curMana -= selectedCard.skill.data.cost;
-                UpdateMana();
-                selectedCard.skill.SkillAction(u,TurnManager.Inst.player); //스킬 사용
-                handCards.Remove(selectedCard); //손에 있는 카드 없애기
-                isCardSelected = false; //선택 취소
-                ArcController.Inst.UnTargeting(); //Arc타겟팅 취소
-                Destroy(selectedCard.gameObject); //오브젝트 삭제
-                CardAlignment(); //남은 카드 정렬
-                
-            }
+        //Unit오브젝트를 선택했다면 해당 Unit에세 스킬 사용
+        if (!hit.collider || !hit.transform.TryGetComponent(out Unit u)) return;
+        if (selectedCard.skill.data.cost > curMana)
+        {
+            UnSelectCard();
+            return;
         }
+            
+        // 카드 실행
+        Debug.Log("Card Execute");
+        ExecuteCard(selectedCard, u);
+        selectedCard = null;
     }
 
-    private void UnSelect() //카드 선택한 거 취소
-    {
-        if (isCardSelected && Input.GetMouseButtonDown(1))
-        {
-            isCardSelected = false;
-            ArcController.Inst.UnTargeting();
-            foreach (var card in handCards)
-            {
-                card.MoveToPrs(card.originPrs,true); //모든 카드를 원래 자리로
-            }
-        }
-    }
     #endregion
-    public void SetCardSelected(bool selected, Card selectedCard = null)
-    {
-        isCardSelected = selected;
-        if(selectedCard != null && selected) this.selectedCard = selectedCard;
-    }
-    public bool GetIsCardSelected() => isCardSelected;
 
-    IEnumerator IESpawnCards(int count)
+    /// <summary>
+    /// 카드 생성 코루틴
+    /// </summary>
+    /// <param name="count">반복 생성 개수</param>
+    IEnumerator IESpawnCard(int count)
     {
-        for (int i = 0; i < count; i++)
+        if (cardDeck.Count == 0 || count <= 0)
         {
-            if (handCards.Count >= maxHandCardCount) yield break;
-            var skill = remainSkills.Dequeue();
-            var spawnCard= Instantiate(cardPrefab,cardSpawnPos.position,Quaternion.identity,cardSpawnParent);
-            spawnCard.Inject(this);
-            spawnCard.Init(skill);
-            Debug.Log(skill);
-            handCards.Add(spawnCard);
-            
-            CardAlignment(); //카드 정렬
-            if(remainSkills.Count <=0)FillSkills();
-            yield return new WaitForSeconds(0.1f);
+            Debug.Log("No card selected");
+            yield break;
         }
-    }
+        
+        Debug.Log($"카드 드로우");
+        var skill = cardDeck.Dequeue();
+        
+        // 카드 객체 생성
+        var spawnCard= Instantiate(cardPrefab,cardSpawnPos.position,Quaternion.identity,cardSpawnParent);
+        spawnCard.Init(skill);
+        handCards.Add(spawnCard);
+        spawnCard.onHighlight += HighlightCard;
+        spawnCard.exitHighlight += UnHighlightCard;
+        
+        if (skill is GhostSkill)
+        {
+            // TODO: JumpScare 실행
+            // 깜짝 놀라는 무언가를 실행
+            // GhostSkill은 드로우 즉시 카드 실행
+            // ExecuteCard(spawnCard, owner);
+        }
+        
+        CardAlignment(); //카드 정렬
 
-    //남아있는 카드에 카드 채우기
-    private void FillSkills()
-    {
-        allSkills = new List<SkillBase>(CardDataManager.Inst.Skills); //todo 임시로 모든 스킬을 가져옴
-        allSkills.Shuffle(); //카드 셔플
-        remainSkills = new Queue<SkillBase>(allSkills);
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(IESpawnCard(count - 1));
     }
 
     #region Card Alignment
@@ -177,7 +266,7 @@ public class PlayerCardController : Singleton<PlayerCardController>
     {
         List<PRS> newPRS = new List<PRS>();
         newPRS = RoundAlignment(); //원형 위치를 가져옴
-        for (int i = 0; i <handCards.Count; i++)
+        for (int i = 0; i < handCards.Count; i++)
         {
             handCards[i].originPrs = newPRS[i];
             handCards[i].MoveToPrs(newPRS[i],true,0.35f); //새로운 위치로 이동
@@ -221,5 +310,4 @@ public class PlayerCardController : Singleton<PlayerCardController>
         return result;
     }
     #endregion
-    
 }

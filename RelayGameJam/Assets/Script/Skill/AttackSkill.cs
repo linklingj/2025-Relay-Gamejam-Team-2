@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class AttackSkill : SkillBase
 {
-
     public AttackSkill(Data data) : base(data){}
-
-
+    
     public override void SkillAction(Unit targetUnit,Unit ownerUnit)
     {
         if (data.Value != 0)

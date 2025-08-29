@@ -13,7 +13,6 @@ public class Unit : MonoBehaviour
     [SerializeField] Team team;
     private Animator animator;
     private Stat hp,energyStack;
-    private UnitData.Data data;
     private IChangeState changeState;
     [SerializeField] private HpBar hpBarPrefab;
     [SerializeField] private Transform energyPrefab;
@@ -22,6 +21,8 @@ public class Unit : MonoBehaviour
     
     private PlayerController _playerController;
     private EnemyController _enemyController;
+    
+    public ICardService CardService;
     
     
     private void Awake()
@@ -37,10 +38,27 @@ public class Unit : MonoBehaviour
     
     public IChangeState GetIChangeState()=>changeState;
     
-    
-    public void Init(UnitData.Data data) //캐릭터 데이터 받기
+    /// <summary>
+    /// 유닛 생성하기
+    /// </summary>
+    /// <param name="data">유닛 데이터</param>
+    public void Init(UnitData.Data data)
     {
-        this.data = data;
+        hp = Stat.Create(data.Hp); //스탯 생성
+        energyStack = Stat.Create(0); //흡입 스킬 스택
+        hp.SetMaxValue(data.Hp);
+        hp.OnValueChanged += OnDead; //hp의 값이 변경될때 실행되게 됩니다
+        energyStack.OnValueChanged += EnergyAlign;
+        hpBar = Instantiate(hpBarPrefab, UIController.Inst.GetCanvasTrans());  //hpbar 생성
+        hpBar.Init(data.Hp,transform);
+    }
+
+    /// <summary>
+    /// 플레이어 생성하기
+    /// </summary>
+    /// <param name="playerInfo">플레이어 정보</param>
+    public void Init(PlayerInfo data)
+    {
         hp = Stat.Create(data.Hp); //스탯 생성
         energyStack = Stat.Create(0); //흡입 스킬 스택
         hp.SetMaxValue(data.Hp);
@@ -86,7 +104,7 @@ public class Unit : MonoBehaviour
             else //일단 적만 처리 해놨습니다.
             {
                 Destroy(hpBar.gameObject);
-                TurnManager.Inst.CheckEnemy(transform);
+                TurnManager.Inst.RemoveEnemy(this);
                 Destroy(gameObject);
             }
         }
