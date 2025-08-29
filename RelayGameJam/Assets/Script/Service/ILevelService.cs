@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Service
 {
@@ -12,5 +13,7 @@ namespace Service
         public void SetStage(string stage);
 
         public Stage GetStage();
+
+        public List<Stage> GetAllStage();
     }
 }

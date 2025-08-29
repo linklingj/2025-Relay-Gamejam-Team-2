@@ -8,7 +8,7 @@
 
         public override void SkillAction(Unit targetUnit, Unit ownerUnit)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

@@ -1,18 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using CardData;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VInspector;
-using Random = UnityEngine.Random;
 
 public class TurnManager : Singleton<TurnManager>
 {
+    [SerializeField] private Stage stageData;
+    [SerializeField] private int wave = 0;
+    
     [SerializeField] private Button turnEndBtn; // 턴 종료 버튼
    
     [SerializeField] private Transform playerSpawnTrans, enemySpawnTrans; //플레이어 팀과 적 팀의 소환 위치
     [SerializeField] private float spawnRange = 6f; //플레이어 , 적 팀 화면상에 생성 반경
+
+    private event Action OnPlayerTurnStart;
+    private event Action OnPlayerTurnEnd;
     
     [Foldout("Debug")]
     public Unit player; //현재 플레이어 팀들을 저장
@@ -25,30 +30,48 @@ public class TurnManager : Singleton<TurnManager>
     private void Awake()
     {
         // 턴 종료 버튼 연결
-        turnEndBtn.onClick.AddListener(()=>PlayerTurnEnd()); // 플레이어 턴 종료
-        turnEndBtn.onClick.AddListener(() => PlayerCardController.Inst.ResetMana()); //마나 초기화
+        turnEndBtn.onClick.AddListener(PlayerTurnEnd); // 플레이어 턴 종료
+    }
+
+    private void Start()
+    {
+        if (ServiceProvider.Inst.levelService != null)
+        {
+            stageData = ServiceProvider.Inst.levelService.GetStage();
+            OnPlayerTurnStart += () => PlayerCardController.Inst.ResetMana(stageData.maxMana);
+            StartWave(wave);
+        }
     }
     
     [Button]
-    private void StartPlayerTurn()
+    private void StartWave(int num)
     {
+        // 웨이브 정보 호출
+        if (num < 0 || num > stageData.waves.Count)
+        {
+            return;
+        }
+        Wave wave = stageData.waves[num];
+        
         // 플레이어 스폰
-        // TODO: 플레이어 데이터 로컬 저장 후 로드방식으로 변경
-        SpawnUnits(UnitData.Data.DataList[DataManager.Inst.Data.playerCharacterId],true);
+        PlayerInfo playerData = DataManager.Inst.playerInfo;
+        SpawnUnits(playerData);
+        
         
         // 랜덤 적 데이터 호출
-        // TODO: 스테이지별로 적 생성 방식으로 변경
-        var randomEnemies = UnitData.Data.DataList.Where(d => d.Team == Team.EnemyTeam).ToList()
-            .DupRandomT(Random.Range(1, 4 + 1));
-        Debug.Log(randomEnemies.Count());
-        
-        // 적 데이터 기반 플레이어 생성
-        SpawnUnits(randomEnemies,false);
+        List<UnitData.Data> enemies = new();
+        foreach (var id in wave.enemies)
+        {
+            enemies.Add(UnitData.Data.DataList.Find(d => d.ID == id));
+        }
+        SpawnUnits(enemies);
         
         // 턴 시작 애니메이션
         // TODO: 플레이어 턴 시작 표시
         
         // 플레이어 공격 시작
+        PlayerCardController.Inst.Init(player, stageData.maxMana, SkillFactory.Inst.GetSkill(playerData.cardDeck));
+        OnPlayerTurnStart?.Invoke();
         ChangeUnitState(player,State.Attack);
     }
     
@@ -59,10 +82,17 @@ public class TurnManager : Singleton<TurnManager>
     /// </summary>
     /// <param name="unitData">생성할 유닛 정보</param>
     /// <param name="isAlly">우호 여부</param>
-    private void SpawnUnits(UnitData.Data unitData, bool isAlly)
+    private void SpawnUnits(PlayerInfo _player)
     {
-        List<UnitData.Data> dataList = new List<UnitData.Data>(){unitData};
-        SpawnUnits(dataList, isAlly);
+        float xPos = Mathf.Lerp(-spawnRange/2, spawnRange/2, 0.5f);
+        
+        //소환
+        var obj = Instantiate(playerUnit, playerSpawnTrans.position + new Vector3(xPos, 0f), Quaternion.identity);
+        Unit unit = obj.GetComponent<Unit>();
+        unit.Init(_player);
+        unit.CardService = PlayerCardController.Inst;
+        
+        player = unit;
     }
     
     /// <summary>
@@ -70,37 +100,24 @@ public class TurnManager : Singleton<TurnManager>
     /// </summary>
     /// <param name="unitData">생성할 유닛 정보 리스트</param>
     /// <param name="isAlly">우호 여부</param>
-    private void SpawnUnits (List<UnitData.Data> unitData,bool isAlly)
+    private void SpawnUnits (List<UnitData.Data> unitData)
     {
         for (int i = 0; i < unitData.Count; i++)
         {
             //보간을 위한 비율 나누기
-            //ex) 혼자일 때 0.5f(중간거리) 두명일 때 0.25f,0.75f(25%거리, 75%거리 위치) 세명 이상 부터는 꽉 채워서
-            // 역대급 똥 가독성 - Jaehyun9912
-            float space = unitData.Count == 1 ? 0.5f : unitData.Count == 2 ? 0.25f+0.5f*i: (float)i / (float)(unitData.Count-1);
-            
-            //플레이어 팀 진영인지 확인
-            Transform trans = isAlly ? playerSpawnTrans : enemySpawnTrans;
-            GameObject prefab = isAlly ? playerUnit : enemyUnit;
+            float space = unitData.Count == 1 ? 0.5f 
+                        : unitData.Count == 2 ? 0.25f + 0.5f * i
+                                                : i / (float)(unitData.Count-1);
             
             //보간을 통해 생성 위치 연산
             float xPos = Mathf.Lerp(-spawnRange/2, spawnRange/2, space);
-            Vector3 pos = trans.position + new Vector3(xPos, 0f);
             
             //소환
-            var obj = Instantiate(prefab, pos, Quaternion.identity);
+            var obj = Instantiate(enemyUnit, enemySpawnTrans.position + new Vector3(xPos, 0f), Quaternion.identity);
             Unit unit = obj.GetComponent<Unit>();
             unit.Init(unitData[i]);
             
-            //각각에 맞는 팀에 추가
-            if (isAlly)
-            {
-                player = unit;
-            }
-            else
-            {
-                enemyTeams.Add(unit);
-            }
+            enemyTeams.Add(unit);
         }
     }
     #endregion
@@ -147,9 +164,9 @@ public class TurnManager : Singleton<TurnManager>
     /// </summary>
     private void PlayerTurnEnd()    // TODO: 멀티플레이어시 턴 구분 필요
     {
-        //플레이어 팀의 모든 캐릭터를 IdleState상태로
+        OnPlayerTurnEnd?.Invoke();
         ChangeUnitState(player, State.Idle);
-        //적 팀의 캐릭터들이 차례대로 공격을 시전
+
         ChangeUnitState(enemyTeams, State.Attack);
     }
 
@@ -161,11 +178,12 @@ public class TurnManager : Singleton<TurnManager>
         enemyAttackCount += 1;
         if (enemyAttackCount >= enemyTeams.Count)
         {
+            OnPlayerTurnStart?.Invoke();
+
             ChangeUnitState(enemyTeams, State.Idle);
             ChangeUnitState(player, State.Attack);
             enemyAttackCount = 0;
         }
     }
-    
     #endregion
 }

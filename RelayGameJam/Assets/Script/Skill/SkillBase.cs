@@ -35,7 +35,7 @@ public static class SkillDetailsFactory
 
     public static SkillDetails GetSkillByName(string className)
     {
-        if(className == "null")return null;
+        if(className == "null") return null;
         /*
         // 캐시에 있으면 바로 반환
         if (cache.TryGetValue(className, out var cachedInstance))

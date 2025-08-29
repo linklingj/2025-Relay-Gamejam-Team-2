@@ -8,8 +8,8 @@ public class EnemyAttack : IState<EnemyController>
     public void OperateEnter(EnemyController sender)
     {
         _enemyController = sender;
-        var skill = CardDataManager.Inst.GetRandomSkill();
-        Debug.Log(skill.data.CardName+" 스킬을 사용했습니다");
+        // TODO : ghost 유닛별로 데이터를 불러와 해당 스킬 실행하도록 수정
+        var skill = SkillFactory.Inst.GetSkill(0);
         skill.SkillAction(TurnManager.Inst.player,_enemyController.GetUnit());//임시 적용
         _enemyController.ChangeState(State.Idle);
         TurnManager.Inst.EnemyTurnEnd();

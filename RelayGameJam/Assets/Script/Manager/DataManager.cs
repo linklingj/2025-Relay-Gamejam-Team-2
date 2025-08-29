@@ -1,19 +1,61 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using CardData;
 using UnityEngine;
 using VInspector;
+using Service;
 
 [Serializable]
-public class GameData
+public class PlayerInfo
 {
-    public int playerCharacterId = 0;
+    // 플레이어 정보
+    public Guid playerID;
+    public string playerName;
+    
+    // Level
+    public int Hp;
+    
+    // 카드 해금 정보
+    public List<int> cardList;
+    
+    // 덱 정보
+    public List<int> cardDeck;
 
+    public PlayerInfo()
+    {
+        playerID = Guid.NewGuid();
+        playerName = "new Player";
+
+        Hp = 40;
+
+        cardList = new();
+
+        // 시작용 스킬
+        cardList = new()
+        {
+            0,
+            1
+        };
+
+        cardDeck = new()
+        {
+            0,
+            1
+        };
+    }
+
+    public void UnlockCard(int id)
+    {
+        if (!cardList.Contains(id))
+            cardList.Add(id);
+    }
 }
-public class DataManager : SingletonDontDestroyOnLoad<DataManager>
+
+public class DataManager : SingletonDontDestroyOnLoad<DataManager>, IPlayerService
 {
-    string path;
-    public GameData Data;
+    public string path;
+    public PlayerInfo playerInfo { get; private set; }
     private string fileName = "GameData.json";
 
 
@@ -21,34 +63,32 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
     {
         base.Awake();
         path = Path.Combine(Application.persistentDataPath, fileName);
-        JsonLoad();
+        LoadPlayer();
     }
 
-    private void Start()
-    {
-        
-    }
-
-
-    private void JsonLoad()
+    public void LoadPlayer()
     {
         if (!File.Exists(path))
         {
-            Data = new GameData();
-            JsonSave();
+            CreatePlayer();
+            SavePlayer();
         }
         else
         {
             string loadJson = File.ReadAllText(path);
-            Data = JsonUtility.FromJson<GameData>(loadJson);
+            playerInfo = JsonUtility.FromJson<PlayerInfo>(loadJson);
         }
     }
     
-
-    public void JsonSave()
+    public void SavePlayer()
     {
-        string json = JsonUtility.ToJson(Data, true);
+        string json = JsonUtility.ToJson(playerInfo, true);
         File.WriteAllText(path, json);
+    }
+
+    public void CreatePlayer()
+    {
+        playerInfo = new PlayerInfo();
     }
 
     [Button]
@@ -60,10 +100,10 @@ public class DataManager : SingletonDontDestroyOnLoad<DataManager>
         }
 
         // 새 데이터로 초기화
-        Data = new GameData();
-        JsonSave();
+        CreatePlayer();
+        SavePlayer();
     }
 
-    private void OnApplicationQuit() => JsonSave();
-    private void OnApplicationFocus(bool focus) => JsonSave();
+    private void OnApplicationQuit() => SavePlayer();
+    private void OnApplicationFocus(bool focus) => SavePlayer();
 }
