@@ -81,8 +81,22 @@ public class JumpScare : MonoBehaviour
     public void SetDefault(int i)
     {
         Image temp = jumpScare.GetComponent<Image>();
-        temp.sprite = ImgArr[i];                //이미지 설정
-        jumpScare.SetActive(true);              //연출 표시
+        
+        Debug.Log(PlayerPrefs.GetInt("JumpScare", 1));
+        
+        
+        //점프 스케어 유무 (true - 발동)
+        if (JumpScareManagement.IsEnabled)
+        {
+            temp.sprite = ImgArr[i];
+        }
+        else // 점프 스케어 방지 (false)
+        {
+            temp.sprite = ImgArr[i + 4];
+        }
+        
+        
+        jumpScare.SetActive(true);   //연출 표시
         jumpScare.transform.localScale = Vector3.one;
         jumpScare.transform.position = pos;
     }

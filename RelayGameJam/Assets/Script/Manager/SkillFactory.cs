@@ -38,6 +38,8 @@ namespace CardData
                     case CardAttribute.Ghost:
                         // TODO: 귀신 카드 스킬 구현
                         // throw new  NotImplementedException();
+                        Skills.Add(new GhostSkill(cardData));
+                        break;
                     default:
                         continue;
                 }

@@ -34,14 +34,12 @@ public class PlayerInfo
         // 시작용 스킬
         cardList = new()
         {
-            0,
-            1
+            0,1
         };
 
         cardDeck = new()
         {
-            0,
-            1
+            0,1
         };
     }
 

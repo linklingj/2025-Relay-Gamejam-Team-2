@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
@@ -20,5 +21,10 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
             return inst;
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (inst is not null) inst = null;
     }
 }
