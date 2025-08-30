@@ -47,6 +47,15 @@ namespace CardData
             cardImage.sprite = Resources.Load<Sprite>(_path + skill.data.ImageName);//이미지 받아오기
         }
 
+        public void Init()  //skill Data가 비어있는 경우
+        {
+            this.skill = null;
+            nameTxt.text = "??";
+            inforTxt.text = "??";
+            costTxt.text = "??";
+            cardImage.sprite = Resources.Load<Sprite>(_path + "test");//이미지 받아오기
+        }
+
         /// <summary>
         /// 카드 하이라이트 설정
         /// </summary>

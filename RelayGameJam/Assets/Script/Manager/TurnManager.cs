@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using CardData;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,9 +14,19 @@ public class TurnManager : Singleton<TurnManager>
     [SerializeField] private int wave = 0;
     
     [SerializeField] private Button turnEndBtn; // 턴 종료 버튼
-   
+
+    public GameResultUI gameResult;   //게임 클리어/ 게임 오버 창
+
     [SerializeField] private Transform playerSpawnTrans, enemySpawnTrans; //플레이어 팀과 적 팀의 소환 위치
+
+
     [SerializeField] private float spawnRange = 6f; //플레이어 , 적 팀 화면상에 생성 반경
+
+    [SerializeField] private TextMeshProUGUI waveCnt;
+
+    [SerializeField] private GameObject WaveUI;
+
+    [SerializeField] private GameObject TurnUI;
 
     private event Action OnPlayerTurnStart;
     private event Action OnPlayerTurnEnd;
@@ -52,7 +64,10 @@ public class TurnManager : Singleton<TurnManager>
             return;
         }
         Wave wave = stageData.waves[num];
-        
+        int curWave = num + 1;
+
+        waveCnt.text = "Wave :" + curWave + "/" + stageData.waves.Count;
+
         // 플레이어 스폰
         PlayerInfo playerData = DataManager.Inst.playerInfo;
         SpawnUnits(playerData);
@@ -132,12 +147,29 @@ public class TurnManager : Singleton<TurnManager>
         if(enemyTeams.Count <= 0)
         {
             // 현재 스테이지 종료
-            // TODO: 스테이지 매니저의 클리어 이벤트 실행
-            FadeInFadeOutManager.Inst.FadeOut(SceneManager.GetActiveScene().buildIndex,true); //적의 개수가 0이라면 라운드를 종료합니다.
+            //스테이지 매니저의 클리어 이벤트 실행
+            if (LevelManager.Inst.GetStage().waves.Count == wave + 1)   //모든 웨이브의 몬스터를 처치한 경우 스테이지 클리어
+            {
+                gameResult.setResultPhrase("Game Clear");
+                //ToDo::Clear시 카드 해금 기능
+            }
+            else                                                    //남은 웨이브가 있다면 다음 웨이브의 몬스터 소환
+            {
+                FadeInFadeOutManager.Inst.FadeIn(true);
+                StartCoroutine(WaveShow());
+                wave++;
+                StartWave(wave);
+            }
+            //FadeInFadeOutManager.Inst.FadeOut(SceneManager.GetActiveScene().buildIndex,true); //적의 개수가 0이라면 라운드를 종료합니다.
         }
     }
-    
-    
+    public IEnumerator WaveShow()
+    {
+        WaveUI.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        WaveUI.SetActive(false);
+    }
+
     #region TurnState
     /// <summary>
     /// 유닛의 state를 변경
@@ -178,12 +210,25 @@ public class TurnManager : Singleton<TurnManager>
         enemyAttackCount += 1;
         if (enemyAttackCount >= enemyTeams.Count)
         {
+            StartCoroutine(TurnShow());
+            List<int> playerData = new List<int>(DataManager.Inst.playerInfo.cardDeck);
+
+            playerData.Add(UnityEngine.Random.Range(11, 15));
+
+            PlayerCardController.Inst.Init(player, stageData.maxMana, SkillFactory.Inst.GetSkill(playerData));
             OnPlayerTurnStart?.Invoke();
 
             ChangeUnitState(enemyTeams, State.Idle);
             ChangeUnitState(player, State.Attack);
             enemyAttackCount = 0;
         }
+    }
+
+    public IEnumerator TurnShow()
+    {
+        TurnUI.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        TurnUI.SetActive(false);
     }
     #endregion
 }

@@ -50,8 +50,11 @@ public class PlayerCardController : Singleton<PlayerCardController>, ICardServic
     [SerializeField] private RectTransform cardSpawnParent; //카드를 소환할 부모
     [SerializeField] private Transform cardSpawnPos; //카드를 소환할 위치
     [SerializeField] private Card cardPrefab;
+    [SerializeField] private Card GhostCardPrefab;
     [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private Button DrawButton;
+    [SerializeField] private CardCount cardCnt;     //카드 수 표시
+    [SerializeField] private JumpScare jumpScare;
     #endregion
 
     private void Awake()
@@ -71,6 +74,9 @@ public class PlayerCardController : Singleton<PlayerCardController>, ICardServic
         _cardDeck.Shuffle();
         cardDeck = new Queue<SkillBase>(_cardDeck);
         OnManaChange += UpdateManaUI;
+
+        // 카드 수 표시
+        cardCnt.setCardCount(cardDeck.Count);
     }
 
     void Update()
@@ -238,14 +244,40 @@ public class PlayerCardController : Singleton<PlayerCardController>, ICardServic
         
         Debug.Log($"카드 드로우");
         var skill = cardDeck.Dequeue();
-        
+
         // 카드 객체 생성
-        var spawnCard= Instantiate(cardPrefab,cardSpawnPos.position,Quaternion.identity,cardSpawnParent);
-        spawnCard.Init(skill);
-        handCards.Add(spawnCard);
-        spawnCard.onHighlight += HighlightCard;
-        spawnCard.exitHighlight += UnHighlightCard;
-        
+        if (skill is GhostSkill)        //고스트 카드인 경우
+        {
+            var spawnCard = Instantiate(GhostCardPrefab, cardSpawnPos.position, Quaternion.identity, cardSpawnParent);
+            spawnCard.Init(skill);
+            handCards.Add(spawnCard);
+            spawnCard.onHighlight += HighlightCard;
+            spawnCard.exitHighlight += UnHighlightCard;
+            CardAlignment(); //카드 정렬
+
+            //JumpScare 효과
+            yield return new WaitForSeconds(1f);
+
+            if (skill.data.ID == 11)        //JumpScare효과 구분
+                StartCoroutine(jumpScare.SurpriseAttack());    //기습
+            else if (skill.data.ID == 12)
+                StartCoroutine(jumpScare.MentalAbsorption());     //정신 흡입
+            else if (skill.data.ID == 13)
+                StartCoroutine(jumpScare.SpirteSubjection());     //
+            else if (skill.data.ID == 14)
+                StartCoroutine(jumpScare.Chaos());     //
+            ExecuteCard(spawnCard, owner);
+        }
+        else                         //일반 카드인 경유
+        {
+            var spawnCard = Instantiate(cardPrefab, cardSpawnPos.position, Quaternion.identity, cardSpawnParent);
+            spawnCard.Init(skill);
+            handCards.Add(spawnCard);
+            spawnCard.onHighlight += HighlightCard;
+            spawnCard.exitHighlight += UnHighlightCard;
+            CardAlignment(); //카드 정렬
+        }
+        /*
         if (skill is GhostSkill)
         {
             // TODO: JumpScare 실행
@@ -253,11 +285,13 @@ public class PlayerCardController : Singleton<PlayerCardController>, ICardServic
             // GhostSkill은 드로우 즉시 카드 실행
             // ExecuteCard(spawnCard, owner);
         }
-        
-        CardAlignment(); //카드 정렬
+        */
 
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(IESpawnCard(count - 1));
+
+        // 남은 카드 수 표시
+        cardCnt.setCardCount(cardDeck.Count);
     }
 
     #region Card Alignment

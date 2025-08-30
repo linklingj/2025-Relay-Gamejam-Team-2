@@ -61,7 +61,7 @@ namespace UnitData
 		public Team Team;
 		public System.String Information;
 		public System.String ImageName;
-		public System.Int32 damage;
+		public System.Int32 skill;
 		public System.Int32 Hp;
 		public System.Int32 addCard;
   

@@ -20,6 +20,7 @@ public class UnlockCard : SkillBase
 {
     public UnlockCard(Data data) : base(data)
     {
+        DataManager.Inst.playerInfo.cardDeck.Add(data.DetailValue);
     }
 
     public override void SkillAction(Unit targetUnit, Unit ownerUnit)
@@ -36,6 +37,7 @@ public class LostCard : SkillBase
 {
     public LostCard(Data data) : base(data)
     {
+        PlayerCardController.Inst.RemoveCard(PlayerCardController.Inst.handCards[0]);
     }
 
     public override void SkillAction(Unit targetUnit, Unit ownerUnit)

@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private HpBar hpBarPrefab;
     [SerializeField] private Transform energyPrefab;
     [SerializeField] private Transform energyTrans;
+    [SerializeField] private GameResultUI gameResult;   //게임 클리어/ 게임 오버 창
     private HpBar hpBar;
     
     private PlayerController _playerController;
@@ -30,6 +31,8 @@ public class Unit : MonoBehaviour
         changeState = GetComponent<IChangeState>();
         animator = GetComponent<Animator>();
         animator?.Play("Idle");
+
+        gameResult = TurnManager.Inst.gameResult;
         
         if(team == Team.PlayerTeam) _playerController = GetComponent<PlayerController>();
         else _enemyController = GetComponent<EnemyController>();
@@ -98,8 +101,9 @@ public class Unit : MonoBehaviour
         {
             if (team == Team.PlayerTeam)
             {
-                FadeInFadeOutManager.Inst.FadeOut(SceneManager.GetActiveScene().buildIndex,true);
+                //FadeInFadeOutManager.Inst.FadeOut(SceneManager.GetActiveScene().buildIndex,true);
                 //게임오버
+                gameResult.setResultPhrase("Game Over");
             }
             else //일단 적만 처리 해놨습니다.
             {

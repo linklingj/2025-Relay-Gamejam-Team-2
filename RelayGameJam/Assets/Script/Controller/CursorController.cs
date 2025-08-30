@@ -8,7 +8,7 @@ public class CursorController : Singleton<CursorController>
     public GameObject dotPrefab; //중간 연결 점 그래픽
 
     [Header("Arc Settings")]
-    [SerializeField] private float spacing = 10f; //점과 점 사이 거리
+    [SerializeField] private float spacing = 70f; //점과 점 사이 거리
     private float arrowAngleAdjustment = 0f;
 
     [Header("Pool Settings")]
