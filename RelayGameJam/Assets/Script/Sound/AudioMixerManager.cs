@@ -29,6 +29,11 @@ public class AudioMixerManager : MonoBehaviour
         _bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1f);
         _effectVolume = PlayerPrefs.GetFloat("EffectVolume", 1f);
         
+        // 초기 설정
+        audioMixer.SetFloat("Master", Mathf.Log10(_masterVolume > 0 ? _masterVolume : 0.0001f) * 20);
+        audioMixer.SetFloat("BGM", Mathf.Log10(_bgmVolume > 0 ? _bgmVolume : 0.0001f) * 20);
+        audioMixer.SetFloat("Effect", Mathf.Log10(_effectVolume > 0 ? _effectVolume : 0.0001f) * 20);
+        
     }
 
     private void Start()
@@ -43,6 +48,8 @@ public class AudioMixerManager : MonoBehaviour
         SetMasterVolume(_masterVolume);
         SetBGMVolume(_bgmVolume);
         SetEffectVolume(_effectVolume);
+        
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Stage 2
   m_EditorClassIdentifier: 
   stageName: "\uC2A4\uD14C\uC774\uC9C02"
-  maxCardCount: 7
-  maxMana: 4
+  maxCardCount: 5
+  maxMana: 3
   waves:
-  - enemies: 0000000000000000
-  - enemies: 000000000100000002000000
-  - enemies: 00000000010000000100000002000000
+  - enemies: 0000000001000000
