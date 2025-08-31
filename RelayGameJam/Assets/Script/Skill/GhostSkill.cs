@@ -4,11 +4,12 @@
     {
         public GhostSkill(Data data) : base(data)
         {
+            
         }
 
         public override void SkillAction(Unit targetUnit, Unit ownerUnit)
         {
-            
+            DetailAction(targetUnit,ownerUnit);
         }
     }
 }

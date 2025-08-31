@@ -64,10 +64,22 @@ namespace CardData
         {
             if (highlight)
             {
+                /* //기존 코드
                 transform.DOScale(Vector3.one * 1.1f, 0.2f); //스케일 증가
                 transform.DORotateQuaternion(Quaternion.identity, 0.2f);
                 rect.DOAnchorPos(originPrs.pos+new Vector2(0,100f), 0.2f);
                 transform.SetAsLastSibling(); //카드의 위치를 맨 위로
+                */
+                
+                //새로 수정한 코드
+
+                float targetScale = 0.75f;
+                transform.DOScale(Vector3.one * targetScale * 1.1f, 0.2f); //스케일 증가
+                transform.DORotateQuaternion(Quaternion.identity, 0.2f);
+                rect.DOAnchorPos(originPrs.pos+new Vector2(0,50f), 0.2f);
+                transform.SetAsLastSibling(); //카드의 위치를 맨 위로
+
+                
             }
             else
             {

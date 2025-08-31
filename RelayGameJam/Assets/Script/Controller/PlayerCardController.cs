@@ -56,7 +56,6 @@ public class PlayerCardController : Singleton<PlayerCardController>, ICardServic
     [SerializeField] private CardCount cardCnt;     //카드 수 표시
     [SerializeField] private JumpScare jumpScare;
     #endregion
-
     private void Awake()
     {
         ActiveInput();
@@ -65,6 +64,17 @@ public class PlayerCardController : Singleton<PlayerCardController>, ICardServic
 
     public void Init(Unit owner, int _maxMana, List<SkillBase> _cardDeck)
     {
+        
+        // ======================== 디버깅 코드 추가 ========================
+        Debug.Log($"초기 덱 카드 수: {_cardDeck.Count}");
+        foreach (var skill in _cardDeck)
+        {
+            // SkillBase에 CardName 같은 필드가 있다는 가정 하에 작성되었습니다.
+            // data.ID는 이미지상 ID가 있어서 추가했습니다. 필드 이름은 실제 코드에 맞게 수정하세요.
+            Debug.Log($"덱에 들어있는 카드: {skill.data.CardName} (ID: {skill.data.ID})");
+        }
+        // =================================================================
+        
         this.owner = owner;
         // 마나 초기설정
         maxMana = _maxMana;
@@ -338,7 +348,9 @@ public class PlayerCardController : Singleton<PlayerCardController>, ICardServic
                 targetPos.y += curve*50; //50 = offset
                 targetRot = Quaternion.Slerp(left.rotation, right.rotation, objLerps[i]);
             }
-            result.Add(new PRS(targetPos, targetRot, Vector3.one,i));
+            //vector.one 대신 임의로 지정한 targetScale 작성
+            var targetScale = Vector3.one * 0.75f;
+            result.Add(new PRS(targetPos, targetRot, targetScale, i));
            
         }
         return result;

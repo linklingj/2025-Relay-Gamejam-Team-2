@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SingletonDontDestroyOnLoad<T> : MonoBehaviour where T : SingletonDontDestroyOnLoad<T>
@@ -34,5 +35,4 @@ public class SingletonDontDestroyOnLoad<T> : MonoBehaviour where T : SingletonDo
             Destroy(gameObject);
         }
     }
-
 }

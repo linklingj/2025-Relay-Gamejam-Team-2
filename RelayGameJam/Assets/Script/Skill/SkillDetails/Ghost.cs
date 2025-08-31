@@ -1,46 +1,32 @@
 ﻿
 using CardData;
 
-public class Hit : SkillBase
+public class Hit : SkillDetails
 {
-    public Hit(Data data) : base(data)
+    public override void DetailAction(Unit targetUnit, Unit ownerUnit)
     {
-    }
-
-    public override void SkillAction(Unit targetUnit, Unit ownerUnit)
-    {
-        targetUnit.OnDamage(data.Value);
+        targetUnit.OnDamage(value);
     }
 }
 
 /// <summary>
 /// 새 카드 해금
 /// </summary>
-public class UnlockCard : SkillBase
+public class UnlockCard : SkillDetails
 {
-    public UnlockCard(Data data) : base(data)
+    public override void DetailAction(Unit targetUnit, Unit ownerUnit)
     {
-        DataManager.Inst.playerInfo.cardDeck.Add(data.DetailValue);
-    }
-
-    public override void SkillAction(Unit targetUnit, Unit ownerUnit)
-    {
-        targetUnit.OnDamage(data.Value);
-        DataManager.Inst.playerInfo.UnlockCard(data.DetailValue);
+        targetUnit.OnDamage(value);
+        DataManager.Inst.playerInfo.UnlockCard((int)value);
     }
 }
 
 /// <summary>
 ///  제일 왼쪽의 카드 삭제
 /// </summary>
-public class LostCard : SkillBase
+public class LostCard : SkillDetails
 {
-    public LostCard(Data data) : base(data)
-    {
-        PlayerCardController.Inst.RemoveCard(PlayerCardController.Inst.handCards[0]);
-    }
-
-    public override void SkillAction(Unit targetUnit, Unit ownerUnit)
+    public override void DetailAction(Unit targetUnit, Unit ownerUnit)
     {
         if (targetUnit.CardService?.handCards.Count > 0)
         {
